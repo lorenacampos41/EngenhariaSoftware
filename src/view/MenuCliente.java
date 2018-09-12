@@ -122,6 +122,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.setEnabled(false);
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarActionPerformed(evt);
@@ -316,6 +317,7 @@ public class MenuCliente extends javax.swing.JFrame {
         textNome.setEnabled(true);
         textEndereco.setEnabled(true);
         textTelefone.setEnabled(true);
+        jButtonCadastrar.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

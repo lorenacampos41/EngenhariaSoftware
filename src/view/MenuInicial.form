@@ -110,6 +110,7 @@
             <Property name="text" type="java.lang.String" value="Encomendas"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEncomendasMouseEntered"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEncomendasActionPerformed"/>
           </Events>
         </Component>

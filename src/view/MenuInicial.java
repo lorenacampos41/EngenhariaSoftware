@@ -47,6 +47,11 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jButtonEncomendas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonEncomendas.setText("Encomendas");
+        jButtonEncomendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonEncomendasMouseEntered(evt);
+            }
+        });
         jButtonEncomendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEncomendasActionPerformed(evt);
@@ -134,7 +139,15 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void jButtonClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClienteMouseEntered
         // TODO add your handling code here:
+        //exibir hint ao passar o mouse no botao
+        jButtonCliente.setToolTipText("Permite: Cadastrar, Editar e Exluir um cliente");
     }//GEN-LAST:event_jButtonClienteMouseEntered
+
+    private void jButtonEncomendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseEntered
+        // TODO add your handling code here:
+        // exibe um hint ao passar o mouse no botão
+        jButtonEncomendas.setToolTipText("Permite: Agendar, Alterar dados, Finalizar e Excluir uma encomenda");
+    }//GEN-LAST:event_jButtonEncomendasMouseEntered
 
     /**
      * @param args the command line arguments
