@@ -122,13 +122,14 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void jButtonEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncomendasActionPerformed
         // abrir a janela de gerenciar cliente
-     
+        new MenuEncomendas().setVisible(true);
           
     }//GEN-LAST:event_jButtonEncomendasActionPerformed
 
     private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
         // TODO add your handling code here:
         new MenuCliente().setVisible(true);
+        
     }//GEN-LAST:event_jButtonClienteActionPerformed
 
     private void jButtonClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClienteMouseEntered
