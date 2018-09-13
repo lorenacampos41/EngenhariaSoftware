@@ -294,6 +294,7 @@
               <Color blue="0" green="0" red="33" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="EDITAR"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -305,6 +306,7 @@
               <Color blue="0" green="0" red="33" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="EXCLUIR"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -173,10 +173,12 @@ public class MenuCliente extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 0, 0));
         jButton2.setText("EDITAR");
+        jButton2.setEnabled(false);
 
         jButton3.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 0, 0));
         jButton3.setText("EXCLUIR");
+        jButton3.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,7 +276,7 @@ public class MenuCliente extends javax.swing.JFrame {
             
             if ("".equals(textNome.getText())  || "".equals(textEndereco.getText())  || "".equals(textTelefone.getText()) ){
                 JOptionPane.showMessageDialog(
-                null, "Insira um nome", "Aviso",
+                null, "Preencha todos os campos", "Aviso",
                 JOptionPane.PLAIN_MESSAGE );
             }else{
             String query = "INSERT INTO cliente(" +
