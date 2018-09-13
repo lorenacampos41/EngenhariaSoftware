@@ -33,7 +33,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonEncomendas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButtonCliente = new javax.swing.JButton();
+        jButtonClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bem Vindo");
@@ -42,10 +42,12 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setPreferredSize(new java.awt.Dimension(749, 501));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 0));
         jLabel1.setText("Vilanova Cervejaria");
 
-        jButtonEncomendas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonEncomendas.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonEncomendas.setForeground(new java.awt.Color(51, 0, 0));
         jButtonEncomendas.setText("Encomendas");
         jButtonEncomendas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -60,16 +62,17 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logotipo.jpg"))); // NOI18N
 
-        jButtonCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonCliente.setText("Clientes");
-        jButtonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonClientes.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonClientes.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonClientes.setText("Clientes");
+        jButtonClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonClienteMouseEntered(evt);
+                jButtonClientesMouseEntered(evt);
             }
         });
-        jButtonCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClienteActionPerformed(evt);
+                jButtonClientesActionPerformed(evt);
             }
         });
 
@@ -78,18 +81,17 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCliente)
-                            .addComponent(jButtonEncomendas))))
-                .addGap(120, 120, 120)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addComponent(jLabel1)
+                .addContainerGap(226, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEncomendas))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,28 +100,22 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addComponent(jButtonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(77, 77, 77)
+                .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,23 +127,21 @@ public class MenuInicial extends javax.swing.JFrame {
           
     }//GEN-LAST:event_jButtonEncomendasActionPerformed
 
-    private void jButtonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClienteActionPerformed
-        // TODO add your handling code here:
-        new MenuCliente().setVisible(true);
-        
-    }//GEN-LAST:event_jButtonClienteActionPerformed
-
-    private void jButtonClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClienteMouseEntered
-        // TODO add your handling code here:
-        //exibir hint ao passar o mouse no botao
-        jButtonCliente.setToolTipText("Permite: Cadastrar, Editar e Exluir um cliente");
-    }//GEN-LAST:event_jButtonClienteMouseEntered
-
     private void jButtonEncomendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseEntered
         // TODO add your handling code here:
         // exibe um hint ao passar o mouse no botão
         jButtonEncomendas.setToolTipText("Permite: Agendar, Alterar dados, Finalizar e Excluir uma encomenda");
     }//GEN-LAST:event_jButtonEncomendasMouseEntered
+
+    private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
+        // TODO add your handling code here:
+        new MenuCliente().setVisible(true);
+    }//GEN-LAST:event_jButtonClientesActionPerformed
+
+    private void jButtonClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClientesMouseEntered
+        // TODO add your handling code here:
+        jButtonClientes.setToolTipText("Permite: Cadastrar, Alterar dados e Excluir clientes");
+    }//GEN-LAST:event_jButtonClientesMouseEntered
 
     /**
      * @param args the command line arguments
@@ -185,7 +179,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCliente;
+    private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonEncomendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
