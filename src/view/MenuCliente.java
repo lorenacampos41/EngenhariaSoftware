@@ -271,6 +271,12 @@ public class MenuCliente extends javax.swing.JFrame {
         try {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
+            
+            if ("".equals(textNome.getText())  || "".equals(textEndereco.getText())  || "".equals(textTelefone.getText()) ){
+                JOptionPane.showMessageDialog(
+                null, "Insira um nome", "Aviso",
+                JOptionPane.PLAIN_MESSAGE );
+            }else{
             String query = "INSERT INTO cliente(" +
                "nome, endereco, telefone) VALUES ('" +
                textNome.getText() + "', '" + 
@@ -289,7 +295,7 @@ public class MenuCliente extends javax.swing.JFrame {
               JOptionPane.WARNING_MESSAGE );
 
             }
-            
+          }
         } catch (SQLException ex) {
             //Logger.getLogger(MenuCliente.class.getName()).log(Level.SEVERE, null, ex);
             // a linha a baixo exibe a mensagem de falha ao conectar no banco
