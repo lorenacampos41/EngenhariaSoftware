@@ -8,14 +8,23 @@ package view;
 import Classes.Cliente;
 import Classes.Conexao;
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.JMenuItem;
+
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
+
 
 /**
  *
@@ -23,7 +32,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuCliente extends javax.swing.JFrame {
     
-    
+   
+
     public void CarregarJTable(String sql) {
         Connection con;
     try
@@ -44,7 +54,8 @@ public class MenuCliente extends javax.swing.JFrame {
             //retorna os dados da tabela do BD, cada campo e um coluna.
             resultado.getInt("idCliente"),
             resultado.getString("nome"),
-            resultado.getInt("telefone"),
+            resultado.getString("telefone"),
+            resultado.getString("celular"),
             resultado.getString("endereco")
             
          }); 
@@ -87,10 +98,12 @@ public class MenuCliente extends javax.swing.JFrame {
         jTableClientes = new javax.swing.JTable();
         textEndereco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textTelefone = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        textTelefone = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        textCelular = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(788, 650));
@@ -138,7 +151,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Telefone", "Endereço"
+                "Código", "Nome", "Telefone", "Celular", "Endereço"
             }
         ));
         jScrollPane1.setViewportView(jTableClientes);
@@ -153,13 +166,6 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 0, 0));
         jLabel4.setText("Endereço");
-
-        textTelefone.setEnabled(false);
-        textTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textTelefoneActionPerformed(evt);
-            }
-        });
 
         jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
@@ -180,6 +186,24 @@ public class MenuCliente extends javax.swing.JFrame {
         jButton3.setText("EXCLUIR");
         jButton3.setEnabled(false);
 
+        try {
+            textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textTelefone.setEnabled(false);
+
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 0, 0));
+        jLabel5.setText("Celular");
+
+        try {
+            textCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textCelular.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,13 +215,16 @@ public class MenuCliente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCadastrar)))
+                            .addComponent(jButtonCadastrar)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(textCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addComponent(textTelefone, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +251,7 @@ public class MenuCliente extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -239,8 +266,14 @@ public class MenuCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addGap(30, 30, 30)
                 .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,6 +303,7 @@ public class MenuCliente extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         // ao clicar em cadastrar ele seta no banco de dados os valores dos campos nome, endereco e telefone;
         Connection con;
+        
         try {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
@@ -280,25 +314,26 @@ public class MenuCliente extends javax.swing.JFrame {
                 JOptionPane.PLAIN_MESSAGE );
             }else{
             String query = "INSERT INTO cliente(" +
-               "nome, endereco, telefone) VALUES ('" +
+               "nome, endereco, telefone, celular)VALUES(' " +
                textNome.getText() + "', '" + 
-               textEndereco.getText() + "'," +
-               textTelefone.getText() + ")";
-
-            int result = statement.executeUpdate(query);
+               textEndereco.getText() + "','" +
+               textTelefone.getText().replaceAll("[( ) -]","") + "','" +
+               textCelular.getText().replaceAll("[( ) -]","") + "')" ;             
             
-            if ( result == 1 )
-              JOptionPane.showMessageDialog(
-              null, "A inseção foi um sucesso.", "Aviso",
-              JOptionPane.PLAIN_MESSAGE );
-            else {
-              JOptionPane.showMessageDialog(
-              null, "A inserção falhou!.", "Aviso",
-              JOptionPane.WARNING_MESSAGE );
+               int result = statement.executeUpdate(query);
+            
+                if ( result == 1 )
+                  JOptionPane.showMessageDialog(
+                  null, "A inserção foi um sucesso.", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+                else 
+                  JOptionPane.showMessageDialog(
+                  null, "A inserção falhou!. Verifique os campos", "Aviso",
+                  JOptionPane.WARNING_MESSAGE );
 
-            }
+                
           }
-        } catch (SQLException ex) {
+        }catch (SQLException ex){
             //Logger.getLogger(MenuCliente.class.getName()).log(Level.SEVERE, null, ex);
             // a linha a baixo exibe a mensagem de falha ao conectar no banco
             JOptionPane.showMessageDialog(null,"Falha na conexão com banco de dados");
@@ -306,16 +341,13 @@ public class MenuCliente extends javax.swing.JFrame {
             textNome.setText("");
             textEndereco.setText("");
             textTelefone.setText("");
+            textCelular.setText("");
         
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void textEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textEnderecoActionPerformed
-
-    private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textTelefoneActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -329,6 +361,7 @@ public class MenuCliente extends javax.swing.JFrame {
         textEndereco.setEnabled(true);
         textTelefone.setEnabled(true);
         jButtonCadastrar.setEnabled(true);
+        textCelular.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -375,11 +408,14 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
+    private javax.swing.JFormattedTextField textCelular;
     private javax.swing.JTextField textEndereco;
     private javax.swing.JTextField textNome;
-    private javax.swing.JTextField textTelefone;
+    private javax.swing.JFormattedTextField textTelefone;
     // End of variables declaration//GEN-END:variables
+
 }
