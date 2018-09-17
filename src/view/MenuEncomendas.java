@@ -53,22 +53,19 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(136, 35));
 
-        jMenu1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.white));
-        jMenu1.setForeground(new java.awt.Color(51, 0, 0));
+        jMenu1.setForeground(new java.awt.Color(102, 0, 0));
         jMenu1.setText("Nova Encomenda");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.white));
-        jMenu2.setForeground(new java.awt.Color(51, 0, 0));
+        jMenu2.setForeground(new java.awt.Color(102, 0, 0));
         jMenu2.setText("Exibir Encomendas");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.white));
-        jMenu3.setForeground(new java.awt.Color(51, 0, 0));
+        jMenu3.setForeground(new java.awt.Color(102, 0, 0));
         jMenu3.setText("Relatório ");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
