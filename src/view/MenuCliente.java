@@ -339,6 +339,8 @@ public class MenuCliente extends javax.swing.JFrame {
                   textEndereco.setText("");
                   textTelefone.setText("");
                   textCelular.setText("");
+                  // atualiza a tabela com os dados novos vindo do banco
+                  this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
         
                 }else 
                   JOptionPane.showMessageDialog(
