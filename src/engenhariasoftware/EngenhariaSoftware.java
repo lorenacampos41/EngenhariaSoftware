@@ -17,7 +17,7 @@ public class EngenhariaSoftware {
         //tentando conectar ao banco de dados
         Connection con;
         try{// abrir tela inicial se conseguir conectar ao banco
-        con = Conexao.getConnection();
+        con = Conexao.getConnection();System.out.println("Conectou ao banco");
         new MenuInicial().setVisible(true);
         }catch(SQLException ex){// exibe mensagem caso não conecte ao banco
            JOptionPane.showMessageDialog(

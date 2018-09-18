@@ -328,11 +328,9 @@ public class MenuCliente extends javax.swing.JFrame {
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
         // ao clicar em cadastrar ele seta no banco de dados os valores dos campos nome, endereco, celular  e telefone;
         Connection con;
-        
         try {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
-            
             if("".equals(textNome.getText())  || "".equals(textEndereco.getText())){
                 JOptionPane.showMessageDialog(
                 null, "Preecha os campos: \n Nome e Endereço", "Aviso",
@@ -349,9 +347,13 @@ public class MenuCliente extends javax.swing.JFrame {
                textEndereco.getText() + "','" +
                textTelefone.getText().replaceAll("[( ) -]","") + "','" +
                textCelular.getText().replaceAll("[( ) -]","") + "')" ;             
-            
-               int result = statement.executeUpdate(query);
-            
+            try{int result = statement.executeUpdate(query);}catch(SQLException ex){
+                JOptionPane.showMessageDialog(
+                  null, "A inserção falhou!. Verifique os campos", "Aviso",
+                  JOptionPane.WARNING_MESSAGE );    
+            }
+               
+            int result = statement.executeUpdate(query);
                 if ( result == 1 ){
                   JOptionPane.showMessageDialog(
                   null, "A inserção foi um sucesso.", "Aviso",
@@ -369,11 +371,11 @@ public class MenuCliente extends javax.swing.JFrame {
                   JOptionPane.WARNING_MESSAGE );    
                 }
           }
-        }catch (SQLException ex){
+        }catch(SQLException ex){
             //Logger.getLogger(MenuCliente.class.getName()).log(Level.SEVERE, null, ex);
             // a linha a baixo exibe a mensagem de falha ao conectar no banco
             JOptionPane.showMessageDialog(
-                  null, "A inserção foi um sucesso.", "Aviso",
+                  null, "Falha ao conectar banco de dados", "Aviso",
                   JOptionPane.PLAIN_MESSAGE );
         }
             //this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");

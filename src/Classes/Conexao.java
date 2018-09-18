@@ -23,7 +23,6 @@ public class Conexao {
    public static Connection getConnection() throws SQLException{
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("Conectando ao banco");
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/engenhariasoftware",
                 "root","");
 	}catch (ClassNotFoundException e) {
