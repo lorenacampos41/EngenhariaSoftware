@@ -34,6 +34,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonEncomendas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButtonClientes = new javax.swing.JButton();
+        jButtonRelatórios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bem Vindo");
@@ -76,6 +77,20 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
+        jButtonRelatórios.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonRelatórios.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonRelatórios.setText("Relatórios");
+        jButtonRelatórios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonRelatóriosMouseEntered(evt);
+            }
+        });
+        jButtonRelatórios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRelatóriosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,7 +105,8 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEncomendas))
+                    .addComponent(jButtonEncomendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRelatórios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,7 +120,9 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,6 +160,14 @@ public class MenuInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         jButtonClientes.setToolTipText("Permite: Cadastrar, Alterar dados e Excluir clientes");
     }//GEN-LAST:event_jButtonClientesMouseEntered
+
+    private void jButtonRelatóriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRelatóriosMouseEntered
+        jButtonClientes.setToolTipText("Permite: nada por enquanto, hahah");
+    }//GEN-LAST:event_jButtonRelatóriosMouseEntered
+
+    private void jButtonRelatóriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatóriosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRelatóriosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,6 +207,7 @@ public class MenuInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonEncomendas;
+    private javax.swing.JButton jButtonRelatórios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
