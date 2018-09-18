@@ -106,7 +106,6 @@ public class MenuCliente extends javax.swing.JFrame {
         textCelular = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(788, 650));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -140,9 +139,9 @@ public class MenuCliente extends javax.swing.JFrame {
         jButtonCadastrar.setForeground(new java.awt.Color(51, 0, 0));
         jButtonCadastrar.setText("CADASTRAR");
         jButtonCadastrar.setEnabled(false);
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
+        jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCadastrarMouseClicked(evt);
             }
         });
 
@@ -170,9 +169,9 @@ public class MenuCliente extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
         jButton1.setText("NOVO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
 
@@ -222,17 +221,13 @@ public class MenuCliente extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonCadastrar)))))
+                            .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCadastrar)
+                            .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,8 +299,34 @@ public class MenuCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNomeActionPerformed
 
-    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // ao clicar em cadastrar ele seta no banco de dados os valores dos campos nome, endereco e telefone;
+    private void textEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEnderecoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
+    }//GEN-LAST:event_formWindowOpened
+
+    private void textCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCelularActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        textNome.setEnabled(true);
+        textEndereco.setEnabled(true);
+        textTelefone.setEnabled(true);
+        jButtonCadastrar.setEnabled(true);
+        textCelular.setEnabled(true);
+        textNome.setText("");
+        textEndereco.setText("");
+        textTelefone.setText("");
+        textCelular.setText("");
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
+        // ao clicar em cadastrar ele seta no banco de dados os valores dos campos nome, endereco, celular  e telefone;
         Connection con;
         
         try {
@@ -340,45 +361,23 @@ public class MenuCliente extends javax.swing.JFrame {
                   textTelefone.setText("");
                   textCelular.setText("");
                   // atualiza a tabela com os dados novos vindo do banco
-                  this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
+                 // this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
         
-                }else 
+                }else {
                   JOptionPane.showMessageDialog(
                   null, "A inserção falhou!. Verifique os campos", "Aviso",
-                  JOptionPane.WARNING_MESSAGE );
-
-                
+                  JOptionPane.WARNING_MESSAGE );    
+                }
           }
         }catch (SQLException ex){
             //Logger.getLogger(MenuCliente.class.getName()).log(Level.SEVERE, null, ex);
             // a linha a baixo exibe a mensagem de falha ao conectar no banco
-            JOptionPane.showMessageDialog(null,"Falha na conexão com banco de dados");
+            JOptionPane.showMessageDialog(
+                  null, "A inserção foi um sucesso.", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
         }
-            
-    }//GEN-LAST:event_jButtonCadastrarActionPerformed
-
-    private void textEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textEnderecoActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //HAbilitar textarea para cadastrar
-        textNome.setEnabled(true);
-        textEndereco.setEnabled(true);
-        textTelefone.setEnabled(true);
-        jButtonCadastrar.setEnabled(true);
-        textCelular.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void textCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCelularActionPerformed
+            //this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
+    }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     /**
      * @param args the command line arguments
