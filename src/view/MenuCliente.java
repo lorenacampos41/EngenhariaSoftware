@@ -8,22 +8,16 @@ package view;
 import Classes.Cliente;
 import Classes.Conexao;
 import com.mysql.jdbc.PreparedStatement;
-import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
-import javax.swing.JMenuItem;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import jdk.nashorn.internal.runtime.JSType;
 
 
 /**
@@ -342,13 +336,14 @@ public class MenuCliente extends javax.swing.JFrame {
                 JOptionPane.PLAIN_MESSAGE );
             }else{
             Cliente cl=new Cliente();
-            String telefone=textTelefone.getText();
-            telefone=telefone.replaceAll("[(,),-]","");
-            //System.out.println(teste);
-            cl.setTelefone(Integer.parseInt(telefone));
-           String celular=textCelular.getText();
-           celular=celular.replaceAll("[(,),-]","");
-           cl.setCelular(Integer.parseInt(celular));
+            String telefone = textTelefone.getText();
+            telefone = telefone.replaceAll("[()-]","");// retirando os caracterres (   )  - da mascara
+            int tel=JSType.toInt32(telefone);   // convertendo para inteiro
+            cl.setTelefone(tel);      
+            String celular =textCelular.getText(); celular=celular.replaceAll("[()-]","");
+            int cel=JSType.toInt32(celular);   // convertendo para inteiro
+            cl.setCelular(cel);
+            
             String query = "INSERT INTO cliente(" +
                "nome, endereco, telefone, celular)VALUES(' " +
                textNome.getText() + "', '" + 
