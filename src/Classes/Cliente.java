@@ -14,6 +14,7 @@ public class Cliente {
     String nome;
     int telefone;
     String endereco;
+    int celular;
 
     public int getCodigo() {
         return codigo;
@@ -45,6 +46,14 @@ public class Cliente {
 
     public void setTelefone(int telefone) {
         this.telefone = telefone;
+    }
+
+    public void setCelular(int celular) {
+        this.celular = celular;
+    }
+
+    public int getCelular() {
+        return celular;
     }
     
     
