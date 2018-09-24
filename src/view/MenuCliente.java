@@ -254,7 +254,7 @@ public class MenuCliente extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -341,18 +341,20 @@ public class MenuCliente extends javax.swing.JFrame {
                 null, "Preecha pelo menos um número para contato", "Aviso",
                 JOptionPane.PLAIN_MESSAGE );
             }else{
+            Cliente cl=new Cliente();
+            String telefone=textTelefone.getText();
+            telefone=telefone.replaceAll("[(,),-]","");
+            //System.out.println(teste);
+            cl.setTelefone(Integer.parseInt(telefone));
+           String celular=textCelular.getText();
+           celular=celular.replaceAll("[(,),-]","");
+           cl.setCelular(Integer.parseInt(celular));
             String query = "INSERT INTO cliente(" +
                "nome, endereco, telefone, celular)VALUES(' " +
                textNome.getText() + "', '" + 
-               textEndereco.getText() + "','" +
-               textTelefone.getText().replaceAll("[( ) -]","") + "','" +
-               textCelular.getText().replaceAll("[( ) -]","") + "')" ;             
-            try{int result = statement.executeUpdate(query);}catch(SQLException ex){
-                JOptionPane.showMessageDialog(
-                  null, "A inserção falhou!. Verifique os campos", "Aviso",
-                  JOptionPane.WARNING_MESSAGE );    
-            }
-               
+               textEndereco.getText() + "'," + cl.getTelefone() + "," + cl.getCelular() + ")";
+                        
+                    
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
                   JOptionPane.showMessageDialog(
@@ -363,7 +365,7 @@ public class MenuCliente extends javax.swing.JFrame {
                   textTelefone.setText("");
                   textCelular.setText("");
                   // atualiza a tabela com os dados novos vindo do banco
-                 // this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
+                  this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
         
                 }else {
                   JOptionPane.showMessageDialog(
@@ -378,7 +380,7 @@ public class MenuCliente extends javax.swing.JFrame {
                   null, "Falha ao conectar banco de dados", "Aviso",
                   JOptionPane.PLAIN_MESSAGE );
         }
-            //this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
+            this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     /**
