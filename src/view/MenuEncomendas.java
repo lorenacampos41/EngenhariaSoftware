@@ -98,7 +98,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textLocalEntrega = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -131,9 +131,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 0, 0));
         jLabel4.setText("Data de Entrega");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        textLocalEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                textLocalEntregaActionPerformed(evt);
             }
         });
 
@@ -158,7 +158,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(textLocalEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,7 +169,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(jTextField2))
+                    .addComponent(textLocalEntrega))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -232,6 +232,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
         jButton1.setText("CADASTRAR");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -368,9 +373,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void textLocalEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLocalEntregaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_textLocalEntregaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -386,6 +391,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
         nome = jComboBoxCliente.getSelectedItem().toString();
         this.ProcuraIdCliente(nome);       
     }//GEN-LAST:event_jComboBoxClienteItemStateChanged
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -420,7 +431,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelCadastroEncomenda;
     private javax.swing.JDesktopPane jPrincipalEncomendas;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField textCod;
+    private javax.swing.JTextField textLocalEntrega;
     // End of variables declaration//GEN-END:variables
 }
