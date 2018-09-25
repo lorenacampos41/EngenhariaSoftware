@@ -98,10 +98,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
             String query = "INSERT INTO encomenda(" +
-               "Cliente_idCliente, localEntrega, dataEntrega)VALUES( " +
+               "Cliente_idCliente, localEntrega, dataEntrega, situacao)VALUES( " +
                en.getCod_Cliente() + ", '" + 
                en.getLocalEntrega() + "','"+
-               en.getDataEntrega() +"')";
+               en.getDataEntrega() +"','"+
+               en.getSituacao() + "')" ;
             
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
