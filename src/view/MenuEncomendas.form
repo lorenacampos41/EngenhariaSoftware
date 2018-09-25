@@ -289,7 +289,6 @@
                       <Format format="##/##/####" subtype="-1" type="5"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="dd /mm /aaaa    "/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">

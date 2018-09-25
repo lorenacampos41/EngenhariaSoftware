@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import java.time.LocalDate;
 /**
  *
  * @author lorena
@@ -14,6 +15,7 @@ public class Encomenda {
     int cod_Cliente;
     String localEntrega;
     String situacao;
+    LocalDate dataEntrega;
 
     public int getCodigo() {
         return codigo;
@@ -46,5 +48,15 @@ public class Encomenda {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    public LocalDate getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(LocalDate dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+    
+    
     
 }

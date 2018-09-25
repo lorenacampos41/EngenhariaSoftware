@@ -15,6 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Normalizer.Form;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -93,9 +98,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
             String query = "INSERT INTO encomenda(" +
-               "Cliente_idCliente, localEntrega)VALUES( " +
+               "Cliente_idCliente, localEntrega, dataEntrega)VALUES( " +
                en.getCod_Cliente() + ", '" + 
-               en.getLocalEntrega() + "')";
+               en.getLocalEntrega() + "','"+
+               en.getDataEntrega() +"')";
             
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
@@ -182,7 +188,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jDataEntrega.setText("dd /mm /aaaa    ");
-        jDataEntrega.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 0, 0));
@@ -525,6 +530,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         encomenda.setCod_Cliente(cod);
         encomenda.setLocalEntrega(textLocalEntrega.getText());
         encomenda.setSituacao(jComboSituacao.getSelectedItem().toString());
+        String dia=jDataEntrega.getText().substring(0,2);
+        String mes=jDataEntrega.getText().substring(3,5);
+        String ano=jDataEntrega.getText().substring(6,10);
+        encomenda.setDataEntrega(LocalDate.of(Integer.parseInt(ano),Integer.parseInt(mes),Integer.parseInt(dia)));
+        //System.out.print(encomenda.getDataEntrega());
         insereEncomenda(encomenda);
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
