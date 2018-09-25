@@ -23,11 +23,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lorena
  */
+
 public class MenuEncomendas extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuEncomendas
      */
+    
+    
+    
     
     public void CarregarjComboCliente(String sql){
         Connection con;
@@ -35,17 +39,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
         con = Conexao.getConnection();
         com.mysql.jdbc.PreparedStatement banco = (com.mysql.jdbc.PreparedStatement)con.prepareStatement(sql);
         banco.execute(); // cria o vetor
-        
         ResultSet resultado = banco.executeQuery(sql);
         while(resultado.next())
         {
                jComboBoxCliente.addItem(resultado.getString(2));
         }
        } 
-        
         catch(SQLException ex)
         {
-           System.out.println("o erro foi " +ex);
+           System.out.println("o erro foi " +ex);           
         }
    }
 
@@ -54,8 +56,33 @@ public class MenuEncomendas extends javax.swing.JFrame {
     public MenuEncomendas() {
         initComponents();
         jPanelCadastroEncomenda.setVisible(false);
+        jComboBoxCliente.removeAllItems();
+        this.CarregarjComboCliente("SELECT * FROM cliente");
         
     }
+    
+    public void ProcuraIdCliente(String nome){
+        Connection con;
+         try{
+         con = Conexao.getConnection();
+         String sql = "select * from cliente where nome like '%" + nome + "%' ";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         Cliente cl=new Cliente();
+         if(resultSet.next()){ // so espero um resultado por isso uso o IF para verificar 
+            cl.setCodigo(resultSet.getInt("idCliente")); 
+            textCod.setText(Integer.toString(cl.getCodigo()));
+            //System.out.print(cl.getCodigo()); System.out.print("\n");
+         }
+         st.close(); // fecha consulta
+      }
+      catch(Exception e){
+         //e.printStackTrace();
+         System.out.println("Não foi possivel consultar!");
+      }
+		
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +102,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        textCod = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxCliente = new javax.swing.JComboBox<>();
@@ -154,15 +181,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
-        jTextField1.setText("Código");
+        textCod.setText("Código");
 
         jLabel3.setText("Código");
 
         jLabel6.setText("Nome");
 
-        jComboBoxCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBoxClienteMouseClicked(evt);
+        jComboBoxCliente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxClienteItemStateChanged(evt);
             }
         });
 
@@ -176,7 +203,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +224,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textCod, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -354,39 +381,17 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelCadastroEncomenda.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void jComboBoxClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxClienteMouseClicked
-       this.CarregarjComboCliente("SELECT * FROM cliente");
-        
-    }//GEN-LAST:event_jComboBoxClienteMouseClicked
+    private void jComboBoxClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxClienteItemStateChanged
+        String nome;
+        nome = jComboBoxCliente.getSelectedItem().toString();
+        this.ProcuraIdCliente(nome);       
+    }//GEN-LAST:event_jComboBoxClienteItemStateChanged
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuEncomendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuEncomendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuEncomendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuEncomendas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuEncomendas().setVisible(true);
@@ -415,7 +420,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelCadastroEncomenda;
     private javax.swing.JDesktopPane jPrincipalEncomendas;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField textCod;
     // End of variables declaration//GEN-END:variables
 }
