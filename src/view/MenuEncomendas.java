@@ -7,6 +7,7 @@ package view;
 
 import Classes.Cliente;
 import Classes.Conexao;
+import Classes.Encomenda;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
+import jdk.nashorn.internal.runtime.JSType;
 
 /**
  *
@@ -82,6 +84,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
       }
 		
     }
+    
+    
+    public void insereEncomenda(Encomenda en){
+    
+    
+    }
 
 
     /**
@@ -107,7 +115,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBoxCliente = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -229,17 +237,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 0, 0));
-        jButton1.setText("CADASTRAR");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonCadastrar.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
+        jButtonCadastrar.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCadastrarMouseClicked(evt);
             }
         });
 
@@ -269,7 +272,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGroup(jPanelCadastroEncomendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCadastroEncomendaLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonCadastrar))
                     .addGroup(jPanelCadastroEncomendaLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanelCadastroEncomendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,7 +297,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
 
@@ -377,10 +380,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textLocalEntregaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
         jPanelCadastroEncomenda.setVisible(true);
@@ -392,11 +391,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
         this.ProcuraIdCliente(nome);       
     }//GEN-LAST:event_jComboBoxClienteItemStateChanged
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
         // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_jButton1MouseClicked
+        // ao clicar em cadastrar 
+        Encomenda encomenda=new Encomenda();
+        int cod=JSType.toInt32(textCod.getText());
+        encomenda.setCod_Cliente(cod);
+        encomenda.setLocalEntrega(textLocalEntrega.getText());
+        insereEncomenda(encomenda);
+    }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -411,8 +414,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JComboBox<String> jComboBoxCliente;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
