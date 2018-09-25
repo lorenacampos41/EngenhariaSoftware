@@ -50,6 +50,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonEncomendas.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
         jButtonEncomendas.setForeground(new java.awt.Color(51, 0, 0));
         jButtonEncomendas.setText("Encomendas");
+        jButtonEncomendas.setFocusPainted(false);
         jButtonEncomendas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEncomendasMouseEntered(evt);
@@ -80,6 +81,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonRelatórios.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
         jButtonRelatórios.setForeground(new java.awt.Color(51, 0, 0));
         jButtonRelatórios.setText("Relatórios");
+        jButtonRelatórios.setFocusPainted(false);
         jButtonRelatórios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonRelatóriosMouseEntered(evt);

@@ -133,6 +133,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jButtonCadastrar.setForeground(new java.awt.Color(51, 0, 0));
         jButtonCadastrar.setText("CADASTRAR");
         jButtonCadastrar.setEnabled(false);
+        jButtonCadastrar.setFocusPainted(false);
         jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCadastrarMouseClicked(evt);
@@ -171,6 +172,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
         jButton1.setText("NOVO");
+        jButton1.setFocusPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -181,11 +183,18 @@ public class MenuCliente extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(51, 0, 0));
         jButton2.setText("EDITAR");
         jButton2.setEnabled(false);
+        jButton2.setFocusPainted(false);
 
         jButton3.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 0, 0));
         jButton3.setText("EXCLUIR");
         jButton3.setEnabled(false);
+        jButton3.setFocusPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         try {
             textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -385,6 +394,10 @@ public class MenuCliente extends javax.swing.JFrame {
         }
             this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
