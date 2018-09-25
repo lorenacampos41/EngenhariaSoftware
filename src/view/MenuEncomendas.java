@@ -242,6 +242,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -524,15 +529,18 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        // TODO add your handling code here:
-        //JInternalFrame encomendas = new ExibirEncomendas();
-        //JFrame exibir = new MenuRelatorioEncomendas();
-        //jPrincipalEncomendas.add(exibir);
-        //exibir.setVisible(true);
         jPanelCadastroEncomenda.setVisible(false);
         jPanelExibirEncomendas.setVisible(true);
         
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        //criar novo usuario caso não exista
+        CadastroCliente cadastroCliente = new CadastroCliente();
+        jPrincipalEncomendas.add(cadastroCliente);
+        cadastroCliente.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
