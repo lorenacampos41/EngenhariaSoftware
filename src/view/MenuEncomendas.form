@@ -310,7 +310,6 @@
                         <StringItem index="1" value="Enviada"/>
                       </StringArray>
                     </Property>
-                    <Property name="selectedItem" type="java.lang.Object" value="N&#xe3;o enviada"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

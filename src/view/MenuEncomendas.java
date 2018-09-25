@@ -8,22 +8,13 @@ package view;
 import Classes.Cliente;
 import Classes.Conexao;
 import Classes.Encomenda;
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.Normalizer.Form;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import jdk.nashorn.internal.runtime.JSType;
 
 /**
@@ -66,7 +57,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelCadastroEncomenda.setVisible(false);
         jPanelExibirEncomendas.setVisible(false);
         jComboBoxCliente.removeAllItems();
-        this.CarregarjComboCliente("SELECT * FROM cliente");
+        CarregarjComboCliente("SELECT * FROM cliente");
         
     }
     
@@ -512,7 +503,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }//GEN-LAST:event_textLocalEntregaActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-
+        jPanelExibirEncomendas.setVisible(false);
         jPanelCadastroEncomenda.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
 
