@@ -146,7 +146,15 @@ public class MenuCliente extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "Telefone", "Celular", "Endereço"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
 
         textEndereco.setEnabled(false);
