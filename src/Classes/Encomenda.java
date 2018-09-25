@@ -13,6 +13,7 @@ public class Encomenda {
     int codigo;
     int cod_Cliente;
     String localEntrega;
+    String situacao;
 
     public int getCodigo() {
         return codigo;
@@ -36,6 +37,14 @@ public class Encomenda {
 
     public void setLocalEntrega(String localEntrega) {
         this.localEntrega = localEntrega;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
     
 }

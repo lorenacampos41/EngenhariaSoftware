@@ -215,18 +215,15 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" pref="103" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel2" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textLocalEntrega" min="-2" pref="349" max="-2" attributes="0"/>
-                                      <Component id="jDataEntrega" min="-2" pref="69" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jLabel2" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textLocalEntrega" min="-2" pref="349" max="-2" attributes="0"/>
+                              <Component id="jDataEntrega" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="jComboSituacao" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="138" max="32767" attributes="0"/>
                       </Group>
@@ -249,7 +246,10 @@
                               <Component id="jDataEntrega" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="jComboSituacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -289,6 +289,7 @@
                       <Format format="##/##/####" subtype="-1" type="5"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="dd /mm /aaaa    "/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
@@ -301,6 +302,19 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Situa&#xe7;&#xe3;o"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboSituacao">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="Enviada"/>
+                        <StringItem index="1" value="N&#xe3;o enviada"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -572,9 +586,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Todos"/>
-                    <StringItem index="1" value="Entregues"/>
-                    <StringItem index="2" value="N&#xe3;o Entregues"/>
+                    <StringItem index="0" value="Todas"/>
+                    <StringItem index="1" value="Enviadas"/>
+                    <StringItem index="2" value="N&#xe3;o enviadas"/>
                   </StringArray>
                 </Property>
               </Properties>
