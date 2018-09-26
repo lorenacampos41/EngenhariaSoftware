@@ -67,6 +67,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonClientes.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
         jButtonClientes.setForeground(new java.awt.Color(51, 0, 0));
         jButtonClientes.setText("Clientes");
+        jButtonClientes.setFocusPainted(false);
         jButtonClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonClientesMouseEntered(evt);
