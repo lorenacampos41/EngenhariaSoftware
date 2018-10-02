@@ -69,11 +69,11 @@
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textTelefone" min="-2" pref="114" max="-2" attributes="0"/>
                               <Component id="textEndereco" min="-2" pref="436" max="-2" attributes="0"/>
-                              <Component id="textCelular" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                               <Component id="jButtonCadastrar" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="textNome" min="-2" pref="330" max="-2" attributes="0"/>
+                              <Component id="textCelular" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="textTelefone" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
