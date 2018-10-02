@@ -71,7 +71,7 @@
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButtonEstoque1" min="-2" pref="133" max="-2" attributes="0"/>
+                                      <Component id="jButtonOrçamento" min="-2" pref="133" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="660" max="-2" attributes="0"/>
                               </Group>
@@ -101,7 +101,7 @@
                       <Component id="jButtonEncomendas" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jButtonClientes" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="jButtonRelatórios" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="jButtonEstoque1" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="jButtonOrçamento" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -259,7 +259,7 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonProdutosMouseEntered"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonEstoque1">
+        <Component class="javax.swing.JButton" name="jButtonOr&#xe7;amento">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DokChampa" size="18" style="0"/>
@@ -271,8 +271,7 @@
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEstoque1MouseEntered"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEstoque1ActionPerformed"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonOr&#xe7;amentoMouseEntered"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEstoque2">

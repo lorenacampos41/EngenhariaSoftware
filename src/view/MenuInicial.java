@@ -39,7 +39,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jButtonProdutos = new javax.swing.JButton();
-        jButtonEstoque1 = new javax.swing.JButton();
+        jButtonOrçamento = new javax.swing.JButton();
         jButtonEstoque2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,18 +150,13 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonEstoque1.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
-        jButtonEstoque1.setForeground(new java.awt.Color(51, 0, 0));
-        jButtonEstoque1.setText("Orçamento");
-        jButtonEstoque1.setFocusPainted(false);
-        jButtonEstoque1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonOrçamento.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonOrçamento.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonOrçamento.setText("Orçamento");
+        jButtonOrçamento.setFocusPainted(false);
+        jButtonOrçamento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonEstoque1MouseEntered(evt);
-            }
-        });
-        jButtonEstoque1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEstoque1ActionPerformed(evt);
+                jButtonOrçamentoMouseEntered(evt);
             }
         });
 
@@ -204,7 +199,7 @@ public class MenuInicial extends javax.swing.JFrame {
                                             .addGap(17, 17, 17))
                                         .addComponent(jLabel1))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(215, 215, 215)
@@ -225,7 +220,7 @@ public class MenuInicial extends javax.swing.JFrame {
                     .addComponent(jButtonEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEstoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,16 +282,14 @@ public class MenuInicial extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButtonProdutosMouseEntered
 
-    private void jButtonEstoque1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoque1MouseEntered
+    private void jButtonOrçamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOrçamentoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoque1MouseEntered
-
-    private void jButtonEstoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoque1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoque1ActionPerformed
+        jButtonOrçamento.setToolTipText("Permite fazer orçamento sem compromisso");
+    }//GEN-LAST:event_jButtonOrçamentoMouseEntered
 
     private void jButtonEstoque2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoque2MouseEntered
         // TODO add your handling code here:
+       jButtonEstoque2.setToolTipText("Permite nada");
     }//GEN-LAST:event_jButtonEstoque2MouseEntered
 
     private void jButtonEstoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoque2ActionPerformed
@@ -347,8 +340,8 @@ public class MenuInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonEncomendas;
-    private javax.swing.JButton jButtonEstoque1;
     private javax.swing.JButton jButtonEstoque2;
+    private javax.swing.JButton jButtonOrçamento;
     private javax.swing.JButton jButtonProdutos;
     private javax.swing.JButton jButtonRelatórios;
     private javax.swing.JLabel jLabel1;
