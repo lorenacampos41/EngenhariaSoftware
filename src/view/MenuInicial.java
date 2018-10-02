@@ -142,6 +142,9 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonProdutos.setText("Produtos");
         jButtonProdutos.setFocusPainted(false);
         jButtonProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonProdutosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonProdutosMouseEntered(evt);
             }
@@ -280,8 +283,8 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void jButtonProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseEntered
         // TODO add your handling code here:
-        // abrir tela de produtos
-        new MenuProdutos().setVisible(true);
+        jButtonProdutos.setToolTipText("Permite cadastrar e exibir produtos");
+       
     }//GEN-LAST:event_jButtonProdutosMouseEntered
 
     private void jButtonEstoque1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoque1MouseEntered
@@ -299,6 +302,12 @@ public class MenuInicial extends javax.swing.JFrame {
     private void jButtonEstoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoque2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEstoque2ActionPerformed
+
+    private void jButtonProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseClicked
+        // TODO add your handling code here:
+         // abrir tela de produtos
+        new MenuProdutos().setVisible(true);
+    }//GEN-LAST:event_jButtonProdutosMouseClicked
 
     /**
      * @param args the command line arguments
