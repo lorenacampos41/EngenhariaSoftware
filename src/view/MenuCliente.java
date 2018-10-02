@@ -352,15 +352,25 @@ public class MenuCliente extends javax.swing.JFrame {
                 null, "Preecha pelo menos um número para contato", "Aviso",
                 JOptionPane.PLAIN_MESSAGE );
             }else{
-            Cliente cl=new Cliente();
-            String telefone = textTelefone.getText();
-            telefone = telefone.replaceAll("[()-]","");// retirando os caracterres (   )  - da mascara
-            int tel=JSType.toInt32(telefone);   // convertendo para inteiro
-            cl.setTelefone(tel);      
-            String celular =textCelular.getText(); celular=celular.replaceAll("[()-]","");
-            int cel=JSType.toInt32(celular);   // convertendo para inteiro
-            cl.setCelular(cel);
-            
+                    Cliente cl=new Cliente();
+                    String telefone = textTelefone.getText();
+                    telefone = telefone.replaceAll("[()-]","");// retirando os caracterres (   )  - da mascara
+                    // convertendo caracter por caracter em inteiro 
+                    int tel=0;
+                   for (int i=0;i<10;i++){
+                         tel = Integer.valueOf(String.valueOf(tel + telefone.substring(i,i+1)));
+                    }
+                   cl.setTelefone(tel);
+                    // convertendo caracter por caracter em inteiro 
+                    String celular =textCelular.getText(); 
+                    celular=celular.replaceAll("[()-]","");
+                      int cel=0;
+                    for (int i=0;i<11;i++){
+                          cel= Integer.valueOf(cel + celular.substring(i,i++));
+
+                    }
+                    cl.setCelular(cel);       
+                    
             String query = "INSERT INTO cliente(" +
                "nome, endereco, telefone, celular)VALUES(' " +
                textNome.getText() + "', '" + 
