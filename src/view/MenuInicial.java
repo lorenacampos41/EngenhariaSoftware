@@ -146,11 +146,6 @@ public class MenuInicial extends javax.swing.JFrame {
                 jButtonProdutosMouseEntered(evt);
             }
         });
-        jButtonProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutosActionPerformed(evt);
-            }
-        });
 
         jButtonEstoque1.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
         jButtonEstoque1.setForeground(new java.awt.Color(51, 0, 0));
@@ -285,11 +280,9 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void jButtonProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseEntered
         // TODO add your handling code here:
+        // abrir tela de produtos
+        new MenuProdutos().setVisible(true);
     }//GEN-LAST:event_jButtonProdutosMouseEntered
-
-    private void jButtonProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProdutosActionPerformed
 
     private void jButtonEstoque1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoque1MouseEntered
         // TODO add your handling code here:
