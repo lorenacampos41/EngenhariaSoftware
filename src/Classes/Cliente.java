@@ -56,6 +56,14 @@ public class Cliente {
     public String getCelular() {
         return celular;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
     
     
 }

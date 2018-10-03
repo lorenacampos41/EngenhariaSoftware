@@ -249,9 +249,9 @@ public class CadastroCliente extends javax.swing.JInternalFrame {
             cl.setCelular(celular);
             
             String query = "INSERT INTO cliente(" +
-               "nome, endereco, telefone, celular)VALUES(' " +
+               "nome, endereco, telefone, celular,cpf)VALUES(' " +
                textNome1.getText() + "', '" + 
-               textEndereco1.getText() + "'," + cl.getTelefone() + "," + cl.getCelular() + ")";
+               textEndereco1.getText() + "'," + cl.getTelefone() + "," + cl.getCelular() +")";
                   
            int result = statement.executeUpdate(query);
                 if ( result == 1 ){

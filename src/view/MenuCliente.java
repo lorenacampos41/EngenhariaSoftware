@@ -102,7 +102,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButtonPesquisar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -184,11 +184,6 @@ public class MenuCliente extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 0, 0));
@@ -248,11 +243,11 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel7.setText("CPF");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            jFormattedCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setEnabled(false);
+        jFormattedCpf.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,7 +271,7 @@ public class MenuCliente extends javax.swing.JFrame {
                             .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(336, 336, 336)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -323,7 +318,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                    .addComponent(jFormattedCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,10 +380,12 @@ public class MenuCliente extends javax.swing.JFrame {
         textTelefone.setEnabled(true);
         jButtonCadastrar.setEnabled(true);
         textCelular.setEnabled(true);
+        jFormattedCpf.setEnabled(true);
         textNome.setText("");
         textEndereco.setText("");
         textTelefone.setText("");
         textCelular.setText("");
+        jFormattedCpf.setText("");
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
@@ -409,19 +406,15 @@ public class MenuCliente extends javax.swing.JFrame {
             }else{
                     Cliente cl=new Cliente();
                     String telefone = textTelefone.getText();
-                   // telefone = telefone.replaceAll("[()-]","");// retirando os caracterres (   )  - da mascara
-                    
-                    
-                   cl.setTelefone(telefone);
-                    // convertendo caracter por caracter em inteiro 
+                    cl.setTelefone(telefone);
                     String celular =textCelular.getText(); 
-                    //celular=celular.replaceAll("[()-]","");
-                   cl.setCelular(celular);       
-                    
+                    cl.setCelular(celular);       
+                    cl.setCpf(jFormattedCpf.getText());
             String query = "INSERT INTO cliente(" +
-               "nome, endereco, telefone, celular)VALUES(' " +
+               "nome, endereco, telefone, celular,cpf)VALUES(' " +
                textNome.getText() + "', '" + 
-               textEndereco.getText() + "','" + cl.getTelefone() + "','" + cl.getCelular() + "')";
+               textEndereco.getText() + "','" + cl.getTelefone() + "','" + cl.getCelular() + "','"+
+               cl.getCpf() + "')" ;
                         
                     
             int result = statement.executeUpdate(query);
@@ -432,6 +425,7 @@ public class MenuCliente extends javax.swing.JFrame {
                   textNome.setText("");
                   textEndereco.setText("");
                   textTelefone.setText("");
+                  jFormattedCpf.setText(""); 
                   textCelular.setText("");
                   // atualiza a tabela com os dados novos vindo do banco
                   this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
@@ -443,8 +437,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 }
           }
         }catch(SQLException ex){
-            //Logger.getLogger(MenuCliente.class.getName()).log(Level.SEVERE, null, ex);
-            // a linha a baixo exibe a mensagem de falha ao conectar no banco
+             // a linha a baixo exibe a mensagem de falha ao conectar no banco
             JOptionPane.showMessageDialog(
                   null, "Falha ao conectar banco de dados", "Aviso",
                   JOptionPane.PLAIN_MESSAGE );
@@ -459,10 +452,6 @@ public class MenuCliente extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,7 +494,7 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonPesquisar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedCpf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
