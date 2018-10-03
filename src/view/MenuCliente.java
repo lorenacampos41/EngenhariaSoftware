@@ -170,7 +170,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel4.setText("Endereço*");
+        jLabel4.setText("Endereço");
 
         jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 0, 0));
