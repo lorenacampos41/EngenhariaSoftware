@@ -12,9 +12,10 @@ package Classes;
 public class Cliente {
     int codigo;
     String nome;
-    int telefone;
+    String telefone;
     String endereco;
-    int celular;
+    String celular;
+    String cpf;
 
     public int getCodigo() {
         return codigo;
@@ -24,7 +25,7 @@ public class Cliente {
         return nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -44,15 +45,15 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
     

@@ -25,7 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="1" pref="799" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="776" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,7 +51,6 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" min="-2" pref="660" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
@@ -67,12 +66,13 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonOrçamento" min="-2" pref="119" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonProdutos" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="jButtonProdutos" min="-2" pref="109" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonRelatórios" min="-2" pref="111" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane1" alignment="0" min="-2" pref="660" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,7 +89,7 @@
                       <Component id="jButtonEncomendas" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jButtonClientes" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jButtonOrçamento" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="jButtonProdutos" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jButtonProdutos" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jButtonRelatórios" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="131" max="32767" attributes="0"/>
