@@ -40,7 +40,9 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonProdutos = new javax.swing.JButton();
         jButtonOrçamento = new javax.swing.JButton();
-        jButtonEstoque2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bem Vindo");
@@ -53,7 +55,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 0, 0));
         jLabel1.setText("Vilanova Cervejaria");
 
-        jButtonEncomendas.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonEncomendas.setFont(new java.awt.Font("DokChampa", 0, 14)); // NOI18N
         jButtonEncomendas.setForeground(new java.awt.Color(51, 0, 0));
         jButtonEncomendas.setText("Encomendas");
         jButtonEncomendas.setFocusPainted(false);
@@ -70,7 +72,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logotipo.jpg"))); // NOI18N
 
-        jButtonClientes.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonClientes.setFont(new java.awt.Font("DokChampa", 0, 14)); // NOI18N
         jButtonClientes.setForeground(new java.awt.Color(51, 0, 0));
         jButtonClientes.setText("Clientes");
         jButtonClientes.setFocusPainted(false);
@@ -85,7 +87,7 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonRelatórios.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonRelatórios.setFont(new java.awt.Font("DokChampa", 0, 14)); // NOI18N
         jButtonRelatórios.setForeground(new java.awt.Color(51, 0, 0));
         jButtonRelatórios.setText("Relatórios");
         jButtonRelatórios.setFocusPainted(false);
@@ -102,8 +104,6 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -135,9 +135,9 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel3.setText("Próximas Encomendas");
+        jLabel3.setText("Eventos do dia");
 
-        jButtonProdutos.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonProdutos.setFont(new java.awt.Font("DokChampa", 0, 14)); // NOI18N
         jButtonProdutos.setForeground(new java.awt.Color(51, 0, 0));
         jButtonProdutos.setText("Produtos");
         jButtonProdutos.setFocusPainted(false);
@@ -150,7 +150,7 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonOrçamento.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
+        jButtonOrçamento.setFont(new java.awt.Font("DokChampa", 0, 14)); // NOI18N
         jButtonOrçamento.setForeground(new java.awt.Color(51, 0, 0));
         jButtonOrçamento.setText("Orçamento");
         jButtonOrçamento.setFocusPainted(false);
@@ -160,53 +160,69 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonEstoque2.setFont(new java.awt.Font("DokChampa", 0, 18)); // NOI18N
-        jButtonEstoque2.setForeground(new java.awt.Color(51, 0, 0));
-        jButtonEstoque2.setText("Teste");
-        jButtonEstoque2.setFocusPainted(false);
-        jButtonEstoque2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonEstoque2MouseEntered(evt);
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nome do Cliente", "Local de Entrega", "Finalizar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jButtonEstoque2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEstoque2ActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(2);
+        }
+
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 0, 0));
+        jLabel4.setText("Próximos eventos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonEncomendas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(36, 36, 36)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(37, 37, 37)
-                                            .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(17, 17, 17))
-                                        .addComponent(jLabel1))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jButtonProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jButtonEstoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addComponent(jButtonEncomendas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,48 +231,62 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEstoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                    .addComponent(jButtonEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonOrçamento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRelatórios, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncomendasActionPerformed
-        // abrir a janela de gerenciar cliente
-        new MenuEncomendas().setVisible(true);
-          
-    }//GEN-LAST:event_jButtonEncomendasActionPerformed
-
-    private void jButtonEncomendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseEntered
+    private void jButtonOrçamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOrçamentoMouseEntered
         // TODO add your handling code here:
-        // exibe um hint ao passar o mouse no botão
-        jButtonEncomendas.setToolTipText("Permite: Agendar, Alterar dados, Finalizar e Excluir uma encomenda");
-    }//GEN-LAST:event_jButtonEncomendasMouseEntered
+        jButtonOrçamento.setToolTipText("Permite fazer orçamento sem compromisso");
+    }//GEN-LAST:event_jButtonOrçamentoMouseEntered
+
+    private void jButtonProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseEntered
+        // TODO add your handling code here:
+        jButtonProdutos.setToolTipText("Permite cadastrar e exibir produtos");
+
+    }//GEN-LAST:event_jButtonProdutosMouseEntered
+
+    private void jButtonProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseClicked
+        // TODO add your handling code here:
+        // abrir tela de produtos
+        new MenuProdutos().setVisible(true);
+    }//GEN-LAST:event_jButtonProdutosMouseClicked
+
+    private void jButtonRelatóriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatóriosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRelatóriosActionPerformed
+
+    private void jButtonRelatóriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRelatóriosMouseEntered
+        jButtonClientes.setToolTipText("Permite: nada por enquanto, hahah");
+    }//GEN-LAST:event_jButtonRelatóriosMouseEntered
 
     private void jButtonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesActionPerformed
         // TODO add your handling code here:
@@ -268,39 +298,17 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonClientes.setToolTipText("Permite: Cadastrar, Alterar dados e Excluir clientes");
     }//GEN-LAST:event_jButtonClientesMouseEntered
 
-    private void jButtonRelatóriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRelatóriosMouseEntered
-        jButtonClientes.setToolTipText("Permite: nada por enquanto, hahah");
-    }//GEN-LAST:event_jButtonRelatóriosMouseEntered
+    private void jButtonEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncomendasActionPerformed
+        // abrir a janela de gerenciar cliente
+        new MenuEncomendas().setVisible(true);
 
-    private void jButtonRelatóriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRelatóriosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRelatóriosActionPerformed
+    }//GEN-LAST:event_jButtonEncomendasActionPerformed
 
-    private void jButtonProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseEntered
+    private void jButtonEncomendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseEntered
         // TODO add your handling code here:
-        jButtonProdutos.setToolTipText("Permite cadastrar e exibir produtos");
-       
-    }//GEN-LAST:event_jButtonProdutosMouseEntered
-
-    private void jButtonOrçamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonOrçamentoMouseEntered
-        // TODO add your handling code here:
-        jButtonOrçamento.setToolTipText("Permite fazer orçamento sem compromisso");
-    }//GEN-LAST:event_jButtonOrçamentoMouseEntered
-
-    private void jButtonEstoque2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstoque2MouseEntered
-        // TODO add your handling code here:
-       jButtonEstoque2.setToolTipText("Permite nada");
-    }//GEN-LAST:event_jButtonEstoque2MouseEntered
-
-    private void jButtonEstoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstoque2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEstoque2ActionPerformed
-
-    private void jButtonProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProdutosMouseClicked
-        // TODO add your handling code here:
-         // abrir tela de produtos
-        new MenuProdutos().setVisible(true);
-    }//GEN-LAST:event_jButtonProdutosMouseClicked
+        // exibe um hint ao passar o mouse no botão
+        jButtonEncomendas.setToolTipText("Permite: Agendar, Alterar dados, Finalizar e Excluir uma encomenda");
+    }//GEN-LAST:event_jButtonEncomendasMouseEntered
 
     /**
      * @param args the command line arguments
@@ -340,15 +348,17 @@ public class MenuInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClientes;
     private javax.swing.JButton jButtonEncomendas;
-    private javax.swing.JButton jButtonEstoque2;
     private javax.swing.JButton jButtonOrçamento;
     private javax.swing.JButton jButtonProdutos;
     private javax.swing.JButton jButtonRelatórios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
