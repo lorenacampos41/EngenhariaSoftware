@@ -510,6 +510,17 @@ public class MenuCliente extends javax.swing.JFrame {
         jButtonCadastrar.setEnabled(false);
         
         // pegando a linha
+        
+        //pegando valor da linha
+        int linha = jTableClientes.getSelectedRow();
+            //Pega o dado de dentro da celula da tabela
+            String dado = (String) jTableClientes.getValueAt(linha, 1);
+            String codigo = String.valueOf(jTableClientes.getValueAt(linha, 0));
+            //converte pra inteiro.
+            int cod = Integer.parseInt(codigo);
+            
+            
+            //int estado = JOptionPane.showConfirmDialog(null, "Dado: " + dado + "\n Codigo: " + cod, "Deseja carregar o cadastro?", JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_jButtonEditarMouseClicked
 
     private void jButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonExcluirMouseClicked
@@ -535,7 +546,9 @@ public class MenuCliente extends javax.swing.JFrame {
                 // se confirmar, exclui:
                 Cliente cl=new Cliente();
                 if (cl.removerCliente(cod)==1){
-                    this.CarregarJTable(dado);
+                    DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+
+                    modelo.removeRow(jTableClientes.getSelectedRow());
                 }
                 
             }
