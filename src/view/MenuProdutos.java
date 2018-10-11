@@ -347,9 +347,8 @@ public class MenuProdutos extends javax.swing.JFrame {
         nome = jComboBoxProduto.getSelectedItem().toString();
         TipoProduto tp=new TipoProduto();
         int codTipo=tp.ProcuraIdTipo(nome);
-        Produto p=new Produto(); p.setNome(textNome.getText());
-        p.setPreco(Double.parseDouble(textPreco.getText()));
-        Cadastraproduto(p);
+        Produto p=new Produto();       
+        p.CadastraProduto(codTipo,nome,Double.parseDouble(textPreco.getText()));
         
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
