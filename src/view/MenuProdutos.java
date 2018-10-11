@@ -6,6 +6,7 @@
 package view;
 
 import Classes.Conexao;
+import Classes.Produto;
 import Classes.TipoProduto;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -60,9 +61,9 @@ public class MenuProdutos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBoxProduto = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        textPreco = new javax.swing.JTextField();
+        textNome = new javax.swing.JTextField();
+        jButtonCadastrar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanelExibirProdutos = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -97,18 +98,23 @@ public class MenuProdutos extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 0, 0));
         jLabel2.setText("Preço unitário");
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField2.setText("pre.");
+        textPreco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textPreco.setText("pre.");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setText("Nome");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        textNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textNome.setText("Nome");
+        textNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                textNomeActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cadastrar");
+        jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCadastrarMouseClicked(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,22 +127,22 @@ public class MenuProdutos extends javax.swing.JFrame {
         jPanel1CadastroProduto.setLayout(jPanel1CadastroProdutoLayout);
         jPanel1CadastroProdutoLayout.setHorizontalGroup(
             jPanel1CadastroProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1CadastroProdutoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39))
             .addGroup(jPanel1CadastroProdutoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1CadastroProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1CadastroProdutoLayout.createSequentialGroup()
                         .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(597, Short.MAX_VALUE))
+                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(462, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1CadastroProdutoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         jPanel1CadastroProdutoLayout.setVerticalGroup(
             jPanel1CadastroProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,13 +154,13 @@ public class MenuProdutos extends javax.swing.JFrame {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -316,9 +322,9 @@ public class MenuProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_textNomeActionPerformed
 
     private void jComboBoxProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxProdutoMouseClicked
         // TODO add your handling code here:
@@ -328,13 +334,24 @@ public class MenuProdutos extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        //criar novo usuario caso não exista
-        
+        //criar novo tipo caso não exista        
         String tipo =JOptionPane.showInputDialog("Nome do Tipo de produto", "Digite o tipo aqui.");
         TipoProduto p = new TipoProduto();
         p.CadastrarTipo(tipo);
-        this.CarregarjComboTipo("SELECT * FROM tipoPrdouto");
+        this.CarregarjComboTipo("SELECT * FROM tipoproduto");
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
+        // TODO add your handling code here:
+        String nome;
+        nome = jComboBoxProduto.getSelectedItem().toString();
+        TipoProduto tp=new TipoProduto();
+        int codTipo=tp.ProcuraIdTipo(nome);
+        Produto p=new Produto(); p.setNome(textNome.getText());
+        p.setPreco(Double.parseDouble(textPreco.getText()));
+        Cadastraproduto(p);
+        
+    }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -372,9 +389,9 @@ public class MenuProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxProduto;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -389,8 +406,8 @@ public class MenuProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelExibirProdutos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textPreco;
     // End of variables declaration//GEN-END:variables
 }

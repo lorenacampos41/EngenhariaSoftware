@@ -6,6 +6,8 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -42,6 +44,26 @@ public class TipoProduto {
         }            
     } 
     
+    public int ProcuraIdTipo(String nome){
+        Connection con;
+         try{
+         con = Conexao.getConnection();
+         String sql = "select * from tipoproduto where descricao like '%" + nome + "%' ";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         ///Cliente cl=new Cliente();
+         //if(resultSet.next()){ // so espero um resultado por isso uso o IF para verificar 
+            //cl.setCodigo(resultSet.getInt("idTipoProduto")); 
+            //textCod.setText(Integer.toString(cl.getCodigo()));
+            //System.out.print(cl.getCodigo()); System.out.print("\n");
+            return resultSet.getInt("idTipoProduto");
+           // st.close(); // fecha consulta
+         }catch(Exception e){
+         //e.printStackTrace();
+         System.out.println("Não foi possivel consultar!");
+      }		
+         return 0;
+    }
     
     
     
