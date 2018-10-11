@@ -5,6 +5,11 @@
  */
 package Classes;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lorena
@@ -66,5 +71,27 @@ public class Cliente {
     }
     
     
+    public int removerCliente(int cod){
+         Connection con;int result = 0;
+        try {
+            con = Conexao.getConnection();
+            Statement statement = con.createStatement();
+            String query = "DELETE FROM cliente WHERE idCliente="+cod+"";
+               
+            result = statement.executeUpdate(query);
+                if ( result == 1 ){
+                  JOptionPane.showMessageDialog(
+                  null, "Excluído com sucesso.", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+                  
+                }    
+        }catch(SQLException ex){
+             // a linha a baixo exibe a mensagem de falha ao conectar no banco
+            JOptionPane.showMessageDialog(
+                  null, "Falha ao conectar banco de dados", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+        }
+        return result;
+    }
     
 }

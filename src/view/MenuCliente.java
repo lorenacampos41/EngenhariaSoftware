@@ -93,8 +93,8 @@ public class MenuCliente extends javax.swing.JFrame {
         textEndereco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
         textTelefone = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         textCelular = new javax.swing.JFormattedTextField();
@@ -105,6 +105,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jFormattedCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -162,6 +163,11 @@ public class MenuCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
         if (jTableClientes.getColumnModel().getColumnCount() > 0) {
             jTableClientes.getColumnModel().getColumn(0).setResizable(false);
@@ -189,20 +195,30 @@ public class MenuCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 0, 0));
-        jButton2.setText("EDITAR");
-        jButton2.setEnabled(false);
-        jButton2.setFocusPainted(false);
+        jButtonEditar.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
+        jButtonEditar.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonEditar.setText("EDITAR");
+        jButtonEditar.setEnabled(false);
+        jButtonEditar.setFocusPainted(false);
+        jButtonEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEditarMouseClicked(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 0, 0));
-        jButton3.setText("EXCLUIR");
-        jButton3.setEnabled(false);
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExcluir.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonExcluir.setText("EXCLUIR");
+        jButtonExcluir.setEnabled(false);
+        jButtonExcluir.setFocusPainted(false);
+        jButtonExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonExcluirMouseClicked(evt);
+            }
+        });
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonExcluirActionPerformed(evt);
             }
         });
 
@@ -290,9 +306,9 @@ public class MenuCliente extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jButton1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton2)
+                                    .addComponent(jButtonEditar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButton3))
+                                    .addComponent(jButtonExcluir))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -303,7 +319,7 @@ public class MenuCliente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(344, 344, 344))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,8 +336,8 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,9 +469,9 @@ public class MenuCliente extends javax.swing.JFrame {
             this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscaNomeActionPerformed
         // TODO add your handling code here:
@@ -468,6 +484,66 @@ public class MenuCliente extends javax.swing.JFrame {
         this.CarregarJTable("SELECT * FROM cliente WHERE nome like '%"+buscaNome+"%'");
     }//GEN-LAST:event_jButtonPesquisarMouseClicked
 
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        // TODO add your handling code here:
+         if (jTableClientes.getSelectedRow() != -1) {
+            jButtonEditar.setEnabled(true);
+            jButtonExcluir.setEnabled(true);
+        } else {
+             jButtonEditar.setEnabled(false);
+            jButtonExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTableClientesMouseClicked
+
+    
+    
+    private void jButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarMouseClicked
+        // TODO add your handling code here:
+        // editar cliente ao clicar no botao
+        // desabiltando os campos de cadastrar
+        jButtonCadastrar.setEnabled(false);
+        textNome.setText("");
+                  textEndereco.setText("");
+                  textTelefone.setText("");
+                  jFormattedCpf.setText(""); 
+                  textCelular.setText("");
+        jButtonCadastrar.setEnabled(false);
+        
+        // pegando a linha
+    }//GEN-LAST:event_jButtonEditarMouseClicked
+
+    private void jButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonExcluirMouseClicked
+       // desabiltando os campos de cadastrar
+        jButtonCadastrar.setEnabled(false);
+        textNome.setText("");
+                  textEndereco.setText("");
+                  textTelefone.setText("");
+                  jFormattedCpf.setText(""); 
+                  textCelular.setText("");
+        jButtonCadastrar.setEnabled(false);
+        //pegando valor da linha
+        int linha = jTableClientes.getSelectedRow();
+            //Pega o dado de dentro da celula da tabela
+            String dado = (String) jTableClientes.getValueAt(linha, 1);
+            String codigo = String.valueOf(jTableClientes.getValueAt(linha, 0));
+            //converte pra inteiro.
+            int cod = Integer.parseInt(codigo);
+            //Pergunta para o usuario.
+             int estado = JOptionPane.showConfirmDialog(null, "Dado: " + dado + "\n Codigo: " + cod, "Deseja carregar o cadastro?", JOptionPane.YES_NO_OPTION);
+            System.out.println("Valor do estado: " + estado);// estado =0 confirma excluir
+            if (estado==0){
+                // se confirmar, exclui:
+                Cliente cl=new Cliente();
+                if (cl.removerCliente(cod)==1){
+                    this.CarregarJTable(dado);
+                }
+                
+            }
+        
+    }//GEN-LAST:event_jButtonExcluirMouseClicked
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -506,9 +582,9 @@ public class MenuCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jBuscaNome;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JFormattedTextField jFormattedCpf;
     private javax.swing.JLabel jLabel1;
