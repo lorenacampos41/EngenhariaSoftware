@@ -133,12 +133,14 @@
                           <Component id="jLabel1" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                           <Component id="textPreco" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jComboBoxProduto" min="-2" pref="133" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jComboBoxProduto" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButton3" min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="textNome" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="textNome" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="462" max="32767" attributes="0"/>
                   </Group>
@@ -208,7 +210,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o unit&#xe1;rio"/>
+                <Property name="text" type="java.lang.String" value="Pre&#xe7;o unit&#xe1;rio "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textPreco">
@@ -216,8 +218,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="pre."/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPrecoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="textNome">
               <Properties>
@@ -274,7 +279,6 @@
                                   <Component id="jLabel4" min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="jComboBox2" min="-2" pref="171" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>

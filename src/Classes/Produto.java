@@ -43,16 +43,15 @@ public class Produto {
             String query = "INSERT INTO produto(" +
                "nome, preco, TipoProduto_idTipoProduto)VALUES(' " +
                nome + "',"+
-               preco +","+
-               codTipo + ")" ;                       
+               2.3 +","+
+               1 + ")" ;                       
                     
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
                   JOptionPane.showMessageDialog(
                   null, "A inserção foi um sucesso.", "Aviso",JOptionPane.PLAIN_MESSAGE );
                 }
-        }catch(SQLException ex){
-             // a linha a baixo exibe a mensagem de falha ao conectar no banco
+        }catch(SQLException ex){       
             JOptionPane.showMessageDialog(
                   null, "Falha ao conectar banco de dados", "Aviso",
                   JOptionPane.PLAIN_MESSAGE );

@@ -45,24 +45,17 @@ public class TipoProduto {
     } 
     
     public int ProcuraIdTipo(String nome){
-        Connection con;
+        Connection con; int cod=0;
          try{
          con = Conexao.getConnection();
-         String sql = "select * from tipoproduto where descricao like '%" + nome + "%' ";
+         String sql = "select * from tipoproduto where descricao like '%"+nome+"%'";
          PreparedStatement st = con.prepareStatement(sql);
          ResultSet resultSet = st.executeQuery();
-         ///Cliente cl=new Cliente();
-         //if(resultSet.next()){ // so espero um resultado por isso uso o IF para verificar 
-            //cl.setCodigo(resultSet.getInt("idTipoProduto")); 
-            //textCod.setText(Integer.toString(cl.getCodigo()));
-            //System.out.print(cl.getCodigo()); System.out.print("\n");
-            return resultSet.getInt("idTipoProduto");
+         cod= resultSet.getInt("idTipoProduto");
            // st.close(); // fecha consulta
-         }catch(Exception e){
-         //e.printStackTrace();
-         System.out.println("Não foi possivel consultar!");
-      }		
-         return 0;
+         }catch(Exception e){System.out.println("Não foi possivel consultar!");
+        }		
+         return cod;
     }
     
     

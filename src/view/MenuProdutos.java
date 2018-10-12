@@ -96,10 +96,15 @@ public class MenuProdutos extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel2.setText("Preço unitário");
+        jLabel2.setText("Preço unitário ");
 
         textPreco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        textPreco.setText("pre.");
+        textPreco.setText("0.0");
+        textPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textPrecoActionPerformed(evt);
+            }
+        });
 
         textNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textNome.setText("Nome");
@@ -133,11 +138,12 @@ public class MenuProdutos extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1CadastroProdutoLayout.createSequentialGroup()
-                        .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1CadastroProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1CadastroProdutoLayout.createSequentialGroup()
+                            .addComponent(jComboBoxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(462, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1CadastroProdutoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,8 +215,7 @@ public class MenuProdutos extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(51, 51, 51))
             .addGroup(jPanelExibirProdutosLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -343,14 +348,18 @@ public class MenuProdutos extends javax.swing.JFrame {
 
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
         // TODO add your handling code here:
-        String nome;
-        nome = jComboBoxProduto.getSelectedItem().toString();
+        String tipo;
+        tipo = jComboBoxProduto.getSelectedItem().toString();
         TipoProduto tp=new TipoProduto();
-        int codTipo=tp.ProcuraIdTipo(nome);
+        int codTipo=tp.ProcuraIdTipo(tipo);
         Produto p=new Produto();       
-        p.CadastraProduto(codTipo,nome,Double.parseDouble(textPreco.getText()));
+        p.CadastraProduto(codTipo,textNome.getText(),Double.parseDouble(textPreco.getText()));
         
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
+
+    private void textPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textPrecoActionPerformed
 
     /**
      * @param args the command line arguments
