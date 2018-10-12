@@ -5,6 +5,7 @@
  */
 package view;
 
+import Classes.Cliente;
 import Classes.Conexao;
 import Classes.Produto;
 import Classes.TipoProduto;
@@ -234,6 +235,11 @@ public class MenuProdutos extends javax.swing.JFrame {
                 "Código", "Nome", "Preço Unitário", "Tipo"
             }
         ));
+        jTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProdutos);
         if (jTableProdutos.getColumnModel().getColumnCount() > 0) {
             jTableProdutos.getColumnModel().getColumn(0).setResizable(false);
@@ -251,6 +257,11 @@ public class MenuProdutos extends javax.swing.JFrame {
         jButtonExcluir.setText("EXCLUIR");
         jButtonExcluir.setEnabled(false);
         jButtonExcluir.setFocusPainted(false);
+        jButtonExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonExcluirMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelExibirProdutosLayout = new javax.swing.GroupLayout(jPanelExibirProdutos);
         jPanelExibirProdutos.setLayout(jPanelExibirProdutosLayout);
@@ -432,6 +443,43 @@ public class MenuProdutos extends javax.swing.JFrame {
     private void textPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecoActionPerformed
         
     }//GEN-LAST:event_textPrecoActionPerformed
+
+    private void jTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutosMouseClicked
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+         if (jTableProdutos.getSelectedRow() != -1) {
+            jButtonEditar.setEnabled(true);
+            jButtonExcluir.setEnabled(true);
+        } else {
+             jButtonEditar.setEnabled(false);
+            jButtonExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTableProdutosMouseClicked
+
+    private void jButtonExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonExcluirMouseClicked
+        // TODO add your handling code here:
+        int linha = jTableProdutos.getSelectedRow();
+            //Pega o dado de dentro da celula da tabela
+            String dado = (String) jTableProdutos.getValueAt(linha, 1);
+            String codigo = String.valueOf(jTableProdutos.getValueAt(linha, 0));
+            //converte pra inteiro.
+            int cod = Integer.parseInt(codigo);
+            //Pergunta para o usuario.
+             int estado = JOptionPane.showConfirmDialog(null, "Dado: " + dado + "\n Codigo: " + cod, "Deseja carregar o cadastro?", JOptionPane.YES_NO_OPTION);
+            //System.out.println("Valor do estado: " + estado);// estado =0 confirma excluir
+            if (estado==0){
+                 // se confirmar, exclui:
+                Produto p= new Produto();
+                if (p.removerProduto(cod)==1){
+                    DefaultTableModel modelo = (DefaultTableModel) jTableProdutos.getModel();
+
+                    modelo.removeRow(jTableProdutos.getSelectedRow());
+                }
+                
+            }
+        
+        //pegando valor da linha
+    }//GEN-LAST:event_jButtonExcluirMouseClicked
 
     /**
      * @param args the command line arguments

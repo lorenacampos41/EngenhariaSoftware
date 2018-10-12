@@ -60,6 +60,29 @@ public class Produto {
     
     
     
+    public int removerProduto(int cod){
+    Connection con;int result = 0;
+        try {
+            con = Conexao.getConnection();
+            Statement statement = con.createStatement();
+            String query = "DELETE FROM produto WHERE idProduto="+cod+"";
+               
+            result = statement.executeUpdate(query);
+                if ( result == 1 ){
+                  JOptionPane.showMessageDialog(
+                  null, "Excluído com sucesso.", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE ); return 1;                 
+                }}catch(SQLException ex){
+                       JOptionPane.showMessageDialog(
+                  null, "Falha ao conectar banco de dados", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+        }  
+        return 0;
+    }
+}
+    
+    
+    
     
  }
 
