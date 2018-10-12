@@ -48,14 +48,16 @@ public class TipoProduto {
         Connection con; int cod=0;
          try{
          con = Conexao.getConnection();
-         String sql = "select * from tipoproduto where descricao like '%"+nome+"%'";
+         String sql = "select * from tipoproduto where descricao like '%" + nome + "%' ";
          PreparedStatement st = con.prepareStatement(sql);
          ResultSet resultSet = st.executeQuery();
-         cod= resultSet.getInt("idTipoProduto");
-           // st.close(); // fecha consulta
+         
+         if(resultSet.next()){ 
+              return resultSet.getInt("idTipoProduto"); 
+         }
          }catch(Exception e){System.out.println("Não foi possivel consultar!");
         }		
-         return cod;
+        return 0;
     }
     
     

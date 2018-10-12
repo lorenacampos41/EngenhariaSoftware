@@ -43,8 +43,8 @@ public class Produto {
             String query = "INSERT INTO produto(" +
                "nome, preco, TipoProduto_idTipoProduto)VALUES(' " +
                nome + "',"+
-               2.3 +","+
-               1 + ")" ;                       
+               preco +","+
+               codTipo + ")" ;                       
                     
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){

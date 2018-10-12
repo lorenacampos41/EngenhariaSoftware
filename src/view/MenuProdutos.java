@@ -358,7 +358,7 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     private void textPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPrecoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_textPrecoActionPerformed
 
     /**
