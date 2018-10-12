@@ -30,10 +30,11 @@ public class MenuProdutos extends javax.swing.JFrame {
         com.mysql.jdbc.PreparedStatement banco = (com.mysql.jdbc.PreparedStatement)con.prepareStatement(sql);
         banco.execute(); // cria o vetor
         ResultSet resultado = banco.executeQuery(sql);
-        jComboBoxProduto.removeAllItems();
+        jComboBoxProduto.removeAllItems();jComboBox.removeAllItems();
         while(resultado.next())
         {
                jComboBoxProduto.addItem(resultado.getString(2));
+               jComboBox.addItem(resultado.getString(2));
         }
        } 
         catch(SQLException ex)
@@ -79,6 +80,7 @@ public class MenuProdutos extends javax.swing.JFrame {
     public MenuProdutos() {
         initComponents();
         CarregarJTable("select * from produto ORDER BY idProduto ASC");
+        CarregarjComboTipo("SELECT * FROM tipoproduto");
         jPanel1CadastroProduto.setVisible(false);
         jPanelExibirProdutos.setVisible(false);
     
@@ -105,8 +107,8 @@ public class MenuProdutos extends javax.swing.JFrame {
         jPanelExibirProdutos = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jBuscaNome = new javax.swing.JTextField();
+        jComboBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdutos = new javax.swing.JTable();
@@ -212,16 +214,20 @@ public class MenuProdutos extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom.png"))); // NOI18N
         jButton2.setText("Pesquisar");
-
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Categoria 1", "Categoria2" }));
+        jBuscaNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBuscaNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscaNomeActionPerformed(evt);
+            }
+        });
+
+        jComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Buscar");
@@ -273,7 +279,7 @@ public class MenuProdutos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelExibirProdutosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBuscaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(51, 51, 51))
@@ -285,7 +291,7 @@ public class MenuProdutos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonExcluir))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -296,13 +302,13 @@ public class MenuProdutos extends javax.swing.JFrame {
                 .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelExibirProdutosLayout.createSequentialGroup()
                         .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBuscaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2))
                         .addGap(48, 48, 48)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -396,9 +402,9 @@ public class MenuProdutos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscaNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jBuscaNomeActionPerformed
 
     private void textNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeActionPerformed
         // TODO add your handling code here:
@@ -474,12 +480,15 @@ public class MenuProdutos extends javax.swing.JFrame {
                     DefaultTableModel modelo = (DefaultTableModel) jTableProdutos.getModel();
 
                     modelo.removeRow(jTableProdutos.getSelectedRow());
-                }
-                
-            }
-        
-        //pegando valor da linha
+                }                
+            }        
+       
     }//GEN-LAST:event_jButtonExcluirMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        String buscaNome=jBuscaNome.getText();
+        this.CarregarJTable("SELECT * FROM produto WHERE nome like '%"+buscaNome+"%'");
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -517,12 +526,13 @@ public class MenuProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField jBuscaNome;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JComboBox<String> jComboBoxProduto;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -536,7 +546,6 @@ public class MenuProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelExibirProdutos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textPreco;
     // End of variables declaration//GEN-END:variables
