@@ -30,7 +30,7 @@ public class MenuProdutos extends javax.swing.JFrame {
         com.mysql.jdbc.PreparedStatement banco = (com.mysql.jdbc.PreparedStatement)con.prepareStatement(sql);
         banco.execute(); // cria o vetor
         ResultSet resultado = banco.executeQuery(sql);
-        jComboBoxProduto.removeAllItems();jComboBox.removeAllItems();
+        jComboBoxProduto.removeAllItems();jComboBox.removeAllItems();jComboBox.addItem("Todos");
         while(resultado.next())
         {
                jComboBoxProduto.addItem(resultado.getString(2));
@@ -114,6 +114,8 @@ public class MenuProdutos extends javax.swing.JFrame {
         jTableProdutos = new javax.swing.JTable();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -228,8 +230,14 @@ public class MenuProdutos extends javax.swing.JFrame {
         });
 
         jComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxItemStateChanged(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 0, 0));
         jLabel4.setText("Buscar");
 
         jTableProdutos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -269,6 +277,13 @@ public class MenuProdutos extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 0, 0));
+        jLabel5.setText("Ordenar por:");
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maior preço", "Menor preço" }));
+
         javax.swing.GroupLayout jPanelExibirProdutosLayout = new javax.swing.GroupLayout(jPanelExibirProdutos);
         jPanelExibirProdutos.setLayout(jPanelExibirProdutosLayout);
         jPanelExibirProdutosLayout.setHorizontalGroup(
@@ -290,9 +305,15 @@ public class MenuProdutos extends javax.swing.JFrame {
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonExcluir))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelExibirProdutosLayout.createSequentialGroup()
+                        .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanelExibirProdutosLayout.setVerticalGroup(
@@ -305,10 +326,14 @@ public class MenuProdutos extends javax.swing.JFrame {
                             .addComponent(jBuscaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2))
                         .addGap(48, 48, 48)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelExibirProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -490,6 +515,21 @@ public class MenuProdutos extends javax.swing.JFrame {
         this.CarregarJTable("SELECT * FROM produto WHERE nome like '%"+buscaNome+"%'");
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxItemStateChanged
+        // TODO add your handling code here:
+        String nome;
+        nome = jComboBox.getSelectedItem().toString();
+        // criando Tipo para buscar por ele
+        System.out.print(nome);
+        if ("Todos".equals(nome)){
+             CarregarJTable("select * from produto ORDER BY idProduto");
+        }else{
+        TipoProduto p = new TipoProduto(); 
+        CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
+                p.ProcuraIdTipo(nome)+"");
+        }
+    }//GEN-LAST:event_jComboBoxItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -533,12 +573,14 @@ public class MenuProdutos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JComboBox<String> jComboBox;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxProduto;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
