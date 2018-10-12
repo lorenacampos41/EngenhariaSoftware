@@ -61,5 +61,21 @@ public class TipoProduto {
     }
     
     
+    public String ProcuraTipo(int cod){
+        Connection con; 
+         try{
+         con = Conexao.getConnection();
+         String sql = "select * from tipoproduto where idTipoProduto="+cod+"";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         
+         if(resultSet.next()){ 
+              return resultSet.getString("descricao"); 
+         }
+         }catch(Exception e){System.out.println("Não foi possivel consultar!");
+        }		
+        return null;
+    }
+    
     
 }
