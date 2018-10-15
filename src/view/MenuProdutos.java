@@ -543,19 +543,18 @@ public class MenuProdutos extends javax.swing.JFrame {
         String nome2;
         nome2 = jComboBox1.getSelectedItem().toString();
         if ("Todos".equals(nome)){
-             if ("Menor preço".equals(nome2)){
-                 CarregarJTable("select * from produto ORDER BY preco");
-             }else{CarregarJTable("select * from produto ORDER BY preco DESC");
-             }
+                if ("Menor preço".equals(nome2)){
+                    CarregarJTable("select * from produto ORDER BY preco");
+                }else{CarregarJTable("select * from produto ORDER BY preco DESC");
+                }
         }else{
         TipoProduto p = new TipoProduto(); 
-        if ("Menor preço".equals(nome2)){
-                  CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
-                p.ProcuraIdTipo(nome)+" ORDER BY preco");
-        }else{CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
-                p.ProcuraIdTipo(nome)+" ORDER BY preco DESC");
-        }
-       
+                if ("Menor preço".equals(nome2)){
+                          CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
+                        p.ProcuraIdTipo(nome)+" ORDER BY preco");
+                }else{CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
+                        p.ProcuraIdTipo(nome)+" ORDER BY preco DESC");
+                }       
         }
         
     }//GEN-LAST:event_jComboBox1ItemStateChanged
