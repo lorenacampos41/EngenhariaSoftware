@@ -283,6 +283,11 @@ public class MenuProdutos extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maior preço", "Menor preço" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelExibirProdutosLayout = new javax.swing.GroupLayout(jPanelExibirProdutos);
         jPanelExibirProdutos.setLayout(jPanelExibirProdutosLayout);
@@ -529,6 +534,31 @@ public class MenuProdutos extends javax.swing.JFrame {
                 p.ProcuraIdTipo(nome)+"");
         }
     }//GEN-LAST:event_jComboBoxItemStateChanged
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // pegar valor do 1º comboBox 
+        String nome;
+        nome = jComboBox.getSelectedItem().toString();
+        // pegar valor do combobox de preco se maior ou menor
+        String nome2;
+        nome2 = jComboBox1.getSelectedItem().toString();
+        if ("Todos".equals(nome)){
+             if ("Menor preço".equals(nome2)){
+                 CarregarJTable("select * from produto ORDER BY preco");
+             }else{CarregarJTable("select * from produto ORDER BY preco DESC");
+             }
+        }else{
+        TipoProduto p = new TipoProduto(); 
+        if ("Menor preço".equals(nome2)){
+                  CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
+                p.ProcuraIdTipo(nome)+" ORDER BY preco");
+        }else{CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
+                p.ProcuraIdTipo(nome)+" ORDER BY preco DESC");
+        }
+       
+        }
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
