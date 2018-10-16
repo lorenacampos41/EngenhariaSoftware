@@ -358,12 +358,12 @@ public class MenuProdutos extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jPanel1CadastroProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                    .addContainerGap(47, Short.MAX_VALUE)
+                    .addContainerGap(25, Short.MAX_VALUE)
                     .addComponent(jPanelExibirProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(78, Short.MAX_VALUE)))
+                    .addContainerGap(55, Short.MAX_VALUE)))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,8 +406,8 @@ public class MenuProdutos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,20 +449,16 @@ public class MenuProdutos extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         //criar novo tipo caso não exista 
-        int dialogButton = JOptionPane.OK_CANCEL_OPTION;
-        UIManager.put("OptionPane.okButtonText", "Cadastrar"); 
+        UIManager.put("OptionPane.okButtonText","Cadastrar");    // alterando o nome do botao de ok, para cadastrar      
         //UIManager.put("OptionPane.cancelButtonText", "Cancelar");
-        String tipo =JOptionPane.showInputDialog("Nome do Tipo de produto", "Digite o tipo aqui.");
-        if (dialogButton==JOptionPane.OK_OPTION){
+        String tipo=JOptionPane.showInputDialog(null,"Nome do Tipo de produto","Digite o tipo aqui.");
+        if (tipo == null || "".equals(tipo)){
+        }else{
             TipoProduto p = new TipoProduto();
             p.CadastrarTipo(tipo);
             this.CarregarjComboTipo("SELECT * FROM tipoproduto");
-        }else{
-            
-        }
-        
-        
-        UIManager.put("OptionPane.okButtonText", "ok");
+        }      
+        UIManager.put("OptionPane.okButtonText","ok");
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
@@ -522,7 +518,7 @@ public class MenuProdutos extends javax.swing.JFrame {
 
     private void jComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxItemStateChanged
         // TODO add your handling code here:
-        String nome;
+        /*String nome;
         nome = jComboBox.getSelectedItem().toString();
         // criando Tipo para buscar por ele
         System.out.print(nome);
@@ -532,7 +528,7 @@ public class MenuProdutos extends javax.swing.JFrame {
         TipoProduto p = new TipoProduto(); 
         CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
                 p.ProcuraIdTipo(nome)+"");
-        }
+        }*/
     }//GEN-LAST:event_jComboBoxItemStateChanged
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged

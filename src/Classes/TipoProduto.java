@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -33,6 +34,7 @@ public class TipoProduto {
                     
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
+                  UIManager.put("OptionPane.okButtonText","ok");
                   JOptionPane.showMessageDialog(
                   null, "A inserção foi um sucesso.", "Aviso",JOptionPane.PLAIN_MESSAGE );
                 }
