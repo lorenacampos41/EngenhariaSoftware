@@ -6,6 +6,8 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -77,6 +79,22 @@ public class Produto {
                   null, "Falha ao conectar banco de dados", "Aviso",
                   JOptionPane.PLAIN_MESSAGE );
         }  
+        return 0;
+    }
+    
+    public int ProcuraIdProduto(String nome){
+        Connection con; int cod=0;
+         try{
+         con = Conexao.getConnection();
+         String sql = "select * from produto where nome like '%" + nome + "%' ";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         
+         if(resultSet.next()){ 
+              return resultSet.getInt("idProduto"); 
+         }
+         }catch(Exception e){System.out.println("Não foi possivel consultar!");
+        }		
         return 0;
     }
 }

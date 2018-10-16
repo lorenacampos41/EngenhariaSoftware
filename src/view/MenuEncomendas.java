@@ -8,6 +8,7 @@ package view;
 import Classes.Cliente;
 import Classes.Conexao;
 import Classes.Encomenda;
+import Classes.Produto;
 import Classes.TipoProduto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import jdk.nashorn.internal.runtime.JSType;
 
 /**
@@ -66,7 +68,38 @@ public class MenuEncomendas extends javax.swing.JFrame {
         }
    }
      
-    
+    public void CarregarJTableInsereProduto(String sql) {
+        Connection con;
+    try
+    {    
+     con = Conexao.getConnection();
+     com.mysql.jdbc.PreparedStatement banco = (com.mysql.jdbc.PreparedStatement)con.prepareStatement(sql);
+     banco.execute(); 
+     ResultSet resultado = banco.executeQuery(sql);
+     DefaultTableModel model =(DefaultTableModel) jTableInsereProduto.getModel();
+     //model.setNumRows(0);
+     TipoProduto tp=new TipoProduto();
+     while(resultado.next())
+     {   
+         model.addRow(new Object[] 
+         { 
+            //retorna os dados da tabela do BD, cada campo e um coluna.
+            tp.ProcuraTipo(resultado.getInt("TipoProduto_idTipoProduto")),
+            resultado.getString("nome"),
+            Integer.parseInt(textQtd.getText()),
+            resultado.getDouble("preco"),
+            resultado.getDouble("preco")*Integer.parseInt(textQtd.getText())
+            
+         }); 
+    } 
+     banco.close();
+     con.close();
+    }
+   catch (SQLException ex)
+   {
+      System.out.println("o erro foi " +ex);
+    }
+   }
     
     public void CarregarjComboCliente(String sql){
         Connection con;
@@ -184,14 +217,14 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableInsereProduto = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jComboBoxProduto = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        textQtd = new javax.swing.JTextField();
+        jButtonInserir = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -470,11 +503,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
         jPanelAba.addTab("Principal", jPanelCadastroEncomenda);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInsereProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Categoria", "Nome", "Quantidade", "Preço Unitário", "Total", "Excluir"
@@ -488,10 +519,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(5).setResizable(false);
-            jTable2.getColumnModel().getColumn(5).setPreferredWidth(10);
+        jScrollPane2.setViewportView(jTableInsereProduto);
+        if (jTableInsereProduto.getColumnModel().getColumnCount() > 0) {
+            jTableInsereProduto.getColumnModel().getColumn(5).setResizable(false);
+            jTableInsereProduto.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -512,10 +543,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("qtd");
+        textQtd.setText("qtd");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
-        jButton3.setText("Inserir");
+        jButtonInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/add.png"))); // NOI18N
+        jButtonInserir.setText("Inserir");
+        jButtonInserir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonInserirMouseClicked(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(51, 0, 0));
@@ -549,10 +585,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
                                 .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(61, 61, 61)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel12)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonInserir)
                         .addComponent(jLabel13)))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
@@ -568,9 +604,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -741,6 +777,16 @@ public class MenuEncomendas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBoxProdutoMouseClicked
 
+    private void jButtonInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonInserirMouseClicked
+        // TODO add your handling code here:
+        // inserindo na tabela os itens quw vai comprar
+        String nome;Produto p = new Produto(); 
+        nome = jComboBoxProduto.getSelectedItem().toString();
+        CarregarJTableInsereProduto("select * from produto where idProduto="+
+                        p.ProcuraIdProduto(nome)+"");
+        
+    }//GEN-LAST:event_jButtonInserirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -755,9 +801,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonInserir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCliente;
     private javax.swing.JComboBox<String> jComboBoxProduto;
@@ -793,9 +839,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTableInsereProduto;
     private javax.swing.JTextField textCod;
     private javax.swing.JTextField textLocalEntrega;
+    private javax.swing.JTextField textQtd;
     // End of variables declaration//GEN-END:variables
 }
