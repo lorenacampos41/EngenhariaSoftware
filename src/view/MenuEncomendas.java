@@ -234,7 +234,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 680));
+        setPreferredSize(new java.awt.Dimension(750, 680));
         setResizable(false);
 
         jPrincipalEncomendas.setPreferredSize(new java.awt.Dimension(700, 600));
@@ -279,12 +279,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanelExibirEncomendasLayout.setVerticalGroup(
             jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,13 +496,14 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
         );
 
         jPanelAba.addTab("Principal", jPanelCadastroEncomenda);
 
+        jTableInsereProduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTableInsereProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -517,6 +518,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        jTableInsereProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInsereProdutoMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jTableInsereProduto);
@@ -538,6 +544,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jComboBoxTipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxTipoItemStateChanged(evt);
+            }
+        });
+        jComboBoxTipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxTipoMouseClicked(evt);
             }
         });
 
@@ -577,25 +588,25 @@ public class MenuEncomendas extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCadastrar)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(24, 24, 24)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(61, 61, 61)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12)))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonInserir)
-                        .addComponent(jLabel13)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addComponent(jButtonInserir)
+                    .addComponent(jLabel13)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButtonCadastrar)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,7 +623,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -630,31 +641,31 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPrincipalEncomendas.setLayout(jPrincipalEncomendasLayout);
         jPrincipalEncomendasLayout.setHorizontalGroup(
             jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
+            .addGap(0, 810, Short.MAX_VALUE)
+            .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalEncomendasLayout.createSequentialGroup()
+                    .addContainerGap(65, Short.MAX_VALUE)
+                    .addComponent(jPanelExibirEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(73, Short.MAX_VALUE)))
             .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalEncomendasLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelExibirEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalEncomendasLayout.createSequentialGroup()
-                    .addContainerGap(18, Short.MAX_VALUE)
                     .addComponent(jPanelAba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
+                    .addContainerGap(26, Short.MAX_VALUE)))
         );
         jPrincipalEncomendasLayout.setVerticalGroup(
             jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
             .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPrincipalEncomendasLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelExibirEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(13, Short.MAX_VALUE)))
+                    .addContainerGap(54, Short.MAX_VALUE)))
             .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPrincipalEncomendasLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelAba, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+                    .addComponent(jPanelAba, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -703,11 +714,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPrincipalEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPrincipalEncomendas, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPrincipalEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPrincipalEncomendas, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         pack();
@@ -792,13 +803,38 @@ public class MenuEncomendas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonInserirMouseClicked
 
+    private void jComboBoxTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTipoMouseClicked
+        // TODO add your handling code here:
+        CarregarjComboTipo("select * from tipoproduto");
+        String nome;TipoProduto p = new TipoProduto(); 
+        nome = jComboBoxTipo.getSelectedItem().toString();
+        CarregarjComboProduto("select * from produto where TipoProduto_idTipoProduto="+
+                        p.ProcuraIdTipo(nome)+"");
+
+    }//GEN-LAST:event_jComboBoxTipoMouseClicked
+
     private void jComboBoxTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoItemStateChanged
         // TODO add your handling code here:
-        String nome;
-        nome = jComboBoxTipo.getSelectedItem().toString();
-        //ProcuraIdCliente(nome);   
-        
+        String nome;TipoProduto p = new TipoProduto(); 
+        nome =jComboBoxTipo.getSelectedObjects().toString();
+         CarregarjComboProduto("select * from produto where TipoProduto_idTipoProduto="+
+                        p.ProcuraIdTipo(nome)+"");
     }//GEN-LAST:event_jComboBoxTipoItemStateChanged
+
+    private void jTableInsereProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInsereProdutoMouseClicked
+         // TODO add your handling code here:
+         // ao clicar em botao excluir (checkbox)
+         //int linha_selecionada = jTableInsereProduto.getSelectedRow();
+         int coluna_selecionada = jTableInsereProduto.getSelectedColumn();
+         if (coluna_selecionada == 5){ // se o botao da coluna 5 estiver ativado
+             // remover o item da jTable
+            //converte pra inteiro.              
+                DefaultTableModel modelo = (DefaultTableModel)jTableInsereProduto.getModel();
+                modelo.removeRow(jTableInsereProduto.getSelectedRow());                              
+        }     
+         
+         
+    }//GEN-LAST:event_jTableInsereProdutoMouseClicked
 
     /**
      * @param args the command line arguments
