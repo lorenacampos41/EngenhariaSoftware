@@ -3,7 +3,12 @@ package engenhariasoftware;
 
 import Classes.Conexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import view.MenuInicial;
 
@@ -27,7 +32,12 @@ public class EngenhariaSoftware {
         }
         // iniciando o programa abrindo a tela de Menu Inicial
         
-	
+	/*Calendar data = Calendar.getInstance();  
+        java.util.Date d = data.getTime();  
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+        dateFormat.format(d); 
+        System.out.println(d);*/
+        
         //con.close();
     }
     

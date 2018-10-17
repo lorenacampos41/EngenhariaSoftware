@@ -5,7 +5,19 @@
  */
 package view;
 
-import javax.swing.JOptionPane;
+import Classes.Conexao;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +28,39 @@ public class MenuInicial extends javax.swing.JFrame {
     /**
      * Creates new form MenuInicial
      */
+    public void CarregarJtableEventosDia(String sql){
+    Connection con;
+    try
+    {    
+     con = Conexao.getConnection();
+     PreparedStatement banco = (PreparedStatement)con.prepareStatement(sql);
+     banco.execute(); // cria o vetor
+     ResultSet resultado = banco.executeQuery(sql);
+     DefaultTableModel model =(DefaultTableModel) jTableEventosDia.getModel();
+     model.setNumRows(0);
+     while(resultado.next())
+     {   
+         model.addRow(new Object[] 
+         { 
+            resultado.getInt("idEncomenda"),
+            resultado.getString("localEntrega")
+                                 
+         }); 
+    } 
+     banco.close();
+     con.close();
+    }
+   catch (SQLException ex){
+      System.out.println("o erro foi " +ex);
+   }
+   }
+  
     public MenuInicial() {
         initComponents();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
+        Calendar c = Calendar.getInstance();    
+        System.out.println(df.format(c.getTime()));// pega a data atual
+        CarregarJtableEventosDia("select * from encomenda where dataEntrega='"+df.format(c.getTime())+"'");
     }
 
     /**
@@ -36,7 +79,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonClientes = new javax.swing.JButton();
         jButtonRelatórios = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableEventosDia = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jButtonProdutos = new javax.swing.JButton();
         jButtonOrçamento = new javax.swing.JButton();
@@ -102,15 +145,15 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEventosDia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTableEventosDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Nome do Cliente", "Local de Entrega", "Data de Entrega", "Finalizar"
+                "Nome do Cliente", "Local de Entrega", "Hora da Entrega", "Finalizar"
             }
         ) {
             Class[] types = new Class [] {
@@ -128,9 +171,9 @@ public class MenuInicial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jTableEventosDia);
+        if (jTableEventosDia.getColumnModel().getColumnCount() > 0) {
+            jTableEventosDia.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -366,7 +409,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableEventosDia;
     // End of variables declaration//GEN-END:variables
 }

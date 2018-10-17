@@ -356,7 +356,7 @@
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="109" max="32767" attributes="0"/>
+                          <EmptySpace pref="76" max="32767" attributes="0"/>
                           <Component id="jButtonProximo" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -396,7 +396,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jLabel9" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jFormattedHoraEntre" min="-2" pref="59" max="-2" attributes="0"/>
+                                              <Component id="jHoraEntrega" min="-2" pref="59" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jComboSituacao" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -423,7 +423,7 @@
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jDataEntrega" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="jFormattedHoraEntre" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jHoraEntrega" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -522,7 +522,7 @@
                         <Property name="text" type="java.lang.String" value="Hora:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="jFormattedHoraEntre">
+                    <Component class="javax.swing.JFormattedTextField" name="jHoraEntrega">
                       <Properties>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="##:##" subtype="-1" type="5"/>
@@ -665,6 +665,7 @@
                       <Color blue="0" green="0" red="33" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="PR&#xd3;XIMO"/>
+                    <Property name="focusPainted" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonProximoMouseClicked"/>
@@ -735,7 +736,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonInserir" min="-2" pref="29" max="-2" attributes="0"/>
-                          <EmptySpace pref="90" max="32767" attributes="0"/>
+                          <EmptySpace pref="57" max="32767" attributes="0"/>
                           <Component id="jLabel13" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="211" max="-2" attributes="0"/>
@@ -909,6 +910,7 @@
                       <Color blue="0" green="0" red="33" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="CADASTRAR"/>
+                    <Property name="focusPainted" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonCadastrarMouseClicked"/>
@@ -923,6 +925,7 @@
                       <Color blue="0" green="0" red="33" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="VOLTAR"/>
+                    <Property name="focusPainted" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonVoltarMouseClicked"/>

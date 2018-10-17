@@ -15,7 +15,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jdk.nashorn.internal.runtime.JSType;
@@ -206,7 +208,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboSituacao = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedHoraEntre = new javax.swing.JFormattedTextField();
+        jHoraEntrega = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         textCod = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -345,11 +347,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel9.setText("Hora:");
 
         try {
-            jFormattedHoraEntre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jHoraEntrega.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedHoraEntre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jHoraEntrega.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -371,7 +373,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedHoraEntre, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jHoraEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 222, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -390,7 +392,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jDataEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedHoraEntre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jHoraEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -473,6 +475,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButtonProximo.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButtonProximo.setForeground(new java.awt.Color(51, 0, 0));
         jButtonProximo.setText("PRÓXIMO");
+        jButtonProximo.setFocusPainted(false);
         jButtonProximo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonProximoMouseClicked(evt);
@@ -505,7 +508,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jButtonProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -585,6 +588,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButtonCadastrar.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButtonCadastrar.setForeground(new java.awt.Color(51, 0, 0));
         jButtonCadastrar.setText("CADASTRAR");
+        jButtonCadastrar.setFocusPainted(false);
         jButtonCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCadastrarMouseClicked(evt);
@@ -594,6 +598,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButtonVoltar.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
         jButtonVoltar.setForeground(new java.awt.Color(51, 0, 0));
         jButtonVoltar.setText("VOLTAR");
+        jButtonVoltar.setFocusPainted(false);
         jButtonVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonVoltarMouseClicked(evt);
@@ -644,7 +649,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -780,7 +785,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
         String mes=jDataEntrega.getText().substring(3,5);
         String ano=jDataEntrega.getText().substring(6,10);
         encomenda.setDataEntrega(LocalDate.of(Integer.parseInt(ano),Integer.parseInt(mes),Integer.parseInt(dia)));
-        //System.out.print(encomenda.getDataEntrega());
+        String hora=jHoraEntrega.getText().substring(0,2);
+        String min=jHoraEntrega.getText().substring(3,5);
+        //encomenda.setHoraEntrega(Time.valueOf(Integer.parseInt(hora),Integer.parseInt(min)));
         insereEncomenda(encomenda);
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
@@ -894,7 +901,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JComboBox<String> jComboSituacao;
     private javax.swing.JFormattedTextField jDataEntrega;
-    private javax.swing.JFormattedTextField jFormattedHoraEntre;
+    private javax.swing.JFormattedTextField jHoraEntrega;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
