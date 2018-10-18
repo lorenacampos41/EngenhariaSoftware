@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jdk.nashorn.internal.runtime.JSType;
@@ -787,7 +788,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         encomenda.setDataEntrega(LocalDate.of(Integer.parseInt(ano),Integer.parseInt(mes),Integer.parseInt(dia)));
         String hora=jHoraEntrega.getText().substring(0,2);
         String min=jHoraEntrega.getText().substring(3,5);
-        //encomenda.setHoraEntrega(Time.valueOf(Integer.parseInt(hora),Integer.parseInt(min)));
+        String seg="00";
+        encomenda.setHoraEntrega(LocalTime.of(Integer.parseInt(hora),Integer.parseInt(min),Integer.parseInt(seg)));
         insereEncomenda(encomenda);
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 

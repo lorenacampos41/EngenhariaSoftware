@@ -38,14 +38,21 @@ public class MenuInicial extends javax.swing.JFrame {
      ResultSet resultado = banco.executeQuery(sql);
      DefaultTableModel model =(DefaultTableModel) jTableEventosDia.getModel();
      model.setNumRows(0);
+     
      while(resultado.next())
-     {   
+     {   int Cliente_idCliente = resultado.getInt("Cliente_idCliente");       
+         String s = "select * from cliente where idCliente ='" +Cliente_idCliente+"'";
+         PreparedStatement st = (PreparedStatement)con.prepareStatement(s);
+         st.execute();
+         ResultSet resultado2 = st.executeQuery(s); 
+         if(resultado2.next()){
          model.addRow(new Object[] 
-         { 
-            resultado.getInt("idEncomenda"),
-            resultado.getString("localEntrega")
+         {  resultado2.getString("nome"),
+            resultado.getString("localEntrega"),
+            resultado.getTime("horaEntrega")
                                  
          }); 
+         }
     } 
      banco.close();
      con.close();
