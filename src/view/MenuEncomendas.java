@@ -769,7 +769,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     private void jComboBoxClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxClienteItemStateChanged
         String nome;
-        nome = jComboBoxCliente.getSelectedItem().toString();
+        nome = jComboBoxCliente.getSelectedItem().toString(); 
         ProcuraIdCliente(nome);       
     }//GEN-LAST:event_jComboBoxClienteItemStateChanged
 
@@ -812,7 +812,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     private void jComboBoxClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxClienteMouseClicked
         // TODO add your handling code here:
-        CarregarjComboCliente("SELECT * FROM cliente");
+        //CarregarjComboCliente("SELECT * FROM cliente");
     }//GEN-LAST:event_jComboBoxClienteMouseClicked
 
     private void jComboBoxProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxProdutoMouseClicked

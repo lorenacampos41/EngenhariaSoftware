@@ -50,7 +50,8 @@ public class MenuCliente extends javax.swing.JFrame {
             resultado.getString("nome"),
             resultado.getString("telefone"),
             resultado.getString("celular"),
-            resultado.getString("endereco")
+            resultado.getString("endereco"),
+            resultado.getString("cpf")
             
          }); 
     } 
