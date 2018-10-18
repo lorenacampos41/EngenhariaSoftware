@@ -73,15 +73,14 @@ public class Encomenda {
     
     
     public int UltimoIdSerido(){
-        Connection con; int cod=0;
+        Connection con; //int cod=0;
          try{
          con = Conexao.getConnection();
-         String sql = "SELECT MAX(idEncomenda) FROM encomenda";
+         String sql = "SELECT  MAX(idEncomenda) AS ID FROM encomenda";
          PreparedStatement st = con.prepareStatement(sql);
          ResultSet resultSet = st.executeQuery();
-         
          if(resultSet.next()){ 
-              return resultSet.getInt("idEncomenda"); 
+              return resultSet.getInt("ID"); 
          }
          }catch(Exception e){System.out.println("Não foi possivel consultar!");
         }		

@@ -165,11 +165,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
             String query = "INSERT INTO encomenda(" +
-               "Cliente_idCliente, localEntrega, dataEntrega, situacao)VALUES( " +
+               "Cliente_idCliente, localEntrega, dataEntrega, situacao, horaEntrega)VALUES( " +
                en.getCod_Cliente() + ", '" + 
                en.getLocalEntrega() + "','"+
                en.getDataEntrega() +"','"+
-               en.getSituacao() + "')" ;
+               en.getSituacao() + "','" +
+               en.getHoraEntrega()+ "')" ;
             
             int result = statement.executeUpdate(query);
                 if ( result == 1 ){
@@ -788,9 +789,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         String min=jHoraEntrega.getText().substring(3,5);
         String seg="00";
         encomenda.setHoraEntrega(LocalTime.of(Integer.parseInt(hora),Integer.parseInt(min),Integer.parseInt(seg)));
+        System.out.print(encomenda.getHoraEntrega());
         insereEncomenda(encomenda);// apos inserir encomenda deve buscar o id desta que foi a ultima a ser inserida
-        int idEncomenda=idEncomenda=encomenda.UltimoIdSerido();// agora vai inserir  na tabela encoemdnaHASproduto
-        encomendaHASproduto ep=new encomendaHASproduto();        
+        int idEncomenda=encomenda.UltimoIdSerido();// agora vai inserir  na tabela encoemdnaHASproduto
+        //encomendaHASproduto ep=new encomendaHASproduto();
+        //System.out.print(jTableInsereProduto.getComponentListeners().toString());
         //ep.Insere(idEncomenda,);
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
