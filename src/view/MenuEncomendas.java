@@ -789,7 +789,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
         String min=jHoraEntrega.getText().substring(3,5);
         String seg="00";
         encomenda.setHoraEntrega(LocalTime.of(Integer.parseInt(hora),Integer.parseInt(min),Integer.parseInt(seg)));
-        insereEncomenda(encomenda);
+        insereEncomenda(encomenda);// apos inserir encomenda deve buscar o id desta que foi a ultima a ser inserida
+        encomenda.UltimoIdSerido();// agora vai inserir  na tabela encoemdnaHASproduto
+        encomendaHASproduto ep=new encomendaHASproduto();        
+        ep.Insere();
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked

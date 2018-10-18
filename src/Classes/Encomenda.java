@@ -5,6 +5,9 @@
  */
 package Classes;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -69,5 +72,19 @@ public class Encomenda {
     }
     
     
-    
+    public int UltimoIdSerido(){
+        Connection con; int cod=0;
+         try{
+         con = Conexao.getConnection();
+         String sql = "SELECT MAX(idEncomenda) FROM encomenda";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         
+         if(resultSet.next()){ 
+              return resultSet.getInt("idEncomenda"); 
+         }
+         }catch(Exception e){System.out.println("Não foi possivel consultar!");
+        }		
+        return 0;
+    }
 }
