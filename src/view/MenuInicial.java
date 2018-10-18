@@ -155,9 +155,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jTableEventosDia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTableEventosDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nome do Cliente", "Local de Entrega", "Hora da Entrega", "Finalizar"
@@ -180,7 +178,10 @@ public class MenuInicial extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableEventosDia);
         if (jTableEventosDia.getColumnModel().getColumnCount() > 0) {
+            jTableEventosDia.getColumnModel().getColumn(2).setResizable(false);
+            jTableEventosDia.getColumnModel().getColumn(2).setPreferredWidth(2);
             jTableEventosDia.getColumnModel().getColumn(3).setResizable(false);
+            jTableEventosDia.getColumnModel().getColumn(3).setPreferredWidth(1);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N

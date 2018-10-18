@@ -238,7 +238,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 680));
         setResizable(false);
 
         jPrincipalEncomendas.setPreferredSize(new java.awt.Dimension(700, 600));
