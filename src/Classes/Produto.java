@@ -19,6 +19,15 @@ import javax.swing.JOptionPane;
 public class Produto {
     String nome;
     double preco;
+    int Cod;
+
+    public int getCod() {
+        return Cod;
+    }
+
+    public void setCod(int Cod) {
+        this.Cod = Cod;
+    }
 
     public String getNome() {
         return nome;

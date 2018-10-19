@@ -10,6 +10,7 @@ import Classes.Conexao;
 import Classes.Encomenda;
 import Classes.Produto;
 import Classes.TipoProduto;
+import Classes.encomendaHASproduto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -528,9 +529,16 @@ public class MenuEncomendas extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTableInsereProduto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -541,7 +549,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableInsereProduto);
         if (jTableInsereProduto.getColumnModel().getColumnCount() > 0) {
             jTableInsereProduto.getColumnModel().getColumn(5).setResizable(false);
-            jTableInsereProduto.getColumnModel().getColumn(5).setPreferredWidth(10);
+            jTableInsereProduto.getColumnModel().getColumn(5).setPreferredWidth(5);
         }
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -792,7 +800,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
         System.out.print(encomenda.getHoraEntrega());
         insereEncomenda(encomenda);// apos inserir encomenda deve buscar o id desta que foi a ultima a ser inserida
         int idEncomenda=encomenda.UltimoIdSerido();// agora vai inserir  na tabela encoemdnaHASproduto
-        //encomendaHASproduto ep=new encomendaHASproduto();
+        encomendaHASproduto ep=new encomendaHASproduto();Produto p=new Produto();
+        // o for abaixo é para pegar os valores da jtable 
+         for(int x = 0; x < jTableInsereProduto.getRowCount();x++){ 
+             // pega codigo do produto para inserir na tabela HAS           
+             p.setCod(p.ProcuraIdProduto((String)jTableInsereProduto.getValueAt(x,1)));
+             
+             ep.insere(idEncomenda,p.getCod(), (double)jTableInsereProduto.getValueAt(x,4), (int) jTableInsereProduto.getValueAt(x,2));
+             System.out.print(jTableInsereProduto.getValueAt(x, 1)); // a posicao getValue (linha,coluna)
+         }
         //System.out.print(jTableInsereProduto.getComponentListeners().toString());
         //ep.Insere(idEncomenda,);
     }//GEN-LAST:event_jButtonCadastrarMouseClicked
