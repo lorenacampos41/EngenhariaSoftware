@@ -34,7 +34,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     /**
      * Creates new form MenuEncomendas
      */
-    
+     public double total=0;
      public void CarregarjComboTipo(String sql){
         Connection con;
         try{    
@@ -233,6 +233,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
+        TextTotal = new javax.swing.JTextField();
+        jAtualizaTotal = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -614,6 +616,22 @@ public class MenuEncomendas extends javax.swing.JFrame {
             }
         });
 
+        TextTotal.setEditable(false);
+        TextTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTotalActionPerformed(evt);
+            }
+        });
+
+        jAtualizaTotal.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jAtualizaTotal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/arrow_refresh.png"))); // NOI18N
+        jAtualizaTotal.setText("Total:R$");
+        jAtualizaTotal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jAtualizaTotalMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -634,14 +652,19 @@ public class MenuEncomendas extends javax.swing.JFrame {
                             .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)))
                     .addComponent(jButtonInserir)
-                    .addComponent(jLabel13)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jButtonVoltar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCadastrar))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                            .addComponent(jAtualizaTotal)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TextTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButtonVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCadastrar))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel13))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -658,11 +681,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addComponent(textQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAtualizaTotal))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -805,8 +832,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
          for(int x = 0; x < jTableInsereProduto.getRowCount();x++){ 
              // pega codigo do produto para inserir na tabela HAS           
              p.setCod(p.ProcuraIdProduto((String)jTableInsereProduto.getValueAt(x,1)));
-             
-             ep.insere(idEncomenda,p.getCod(), (double)jTableInsereProduto.getValueAt(x,4), (int) jTableInsereProduto.getValueAt(x,2));
+             //int Encomenda_idEncomenda,int Produto_idProduto,double Total,int qtd
+             //int qtd=Integer.parseInt(jTableInsereProduto.getValueAt(x,2));
+             ep.insere(idEncomenda, p.getCod(),(double)jTableInsereProduto.getValueAt(x,4),Integer.parseInt((String)jTableInsereProduto.getValueAt(x,2)));
              System.out.print(jTableInsereProduto.getValueAt(x, 1)); // a posicao getValue (linha,coluna)
          }
         //System.out.print(jTableInsereProduto.getComponentListeners().toString());
@@ -852,7 +880,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
         nome = jComboBoxProduto.getSelectedItem().toString();
         CarregarJTableInsereProduto("select * from produto where idProduto="+
                         p.ProcuraIdProduto(nome)+"");
-        
+        // o codigo abaixo calcula pega todas as linhas  da jTable 
+        for(int x = 0; x < jTableInsereProduto.getRowCount();x++){
+            // pegar o valor das colunas Total e somar para colocar no Total final
+            total=total+(double)jTableInsereProduto.getValueAt(x,4);            
+        }  
+        TextTotal.setText(String.valueOf(total));
     }//GEN-LAST:event_jButtonInserirMouseClicked
 
     private void jComboBoxTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTipoMouseClicked
@@ -899,6 +932,22 @@ public class MenuEncomendas extends javax.swing.JFrame {
         this.jPanelAba.setSelectedIndex(1);
     }//GEN-LAST:event_jButtonProximoMouseClicked
 
+    private void TextTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextTotalActionPerformed
+
+    private void jAtualizaTotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAtualizaTotalMouseClicked
+        // TODO add your handling code here:
+        // ao clicar em refresh atualiza ele atualiza as colunas de total recalculando e o total final
+        for(int x = 0; x < jTableInsereProduto.getRowCount();x++){ 
+            double totalc=0;
+            totalc=(double)jTableInsereProduto.getValueAt(x,3)*(double)jTableInsereProduto.getValueAt(x,2);
+            jTableInsereProduto.setValueAt(totalc, x, 4);// (objeto, linhax, coluna)
+            total=total+(double)jTableInsereProduto.getValueAt(x,4);
+            
+        }TextTotal.setText(String.valueOf(total));
+    }//GEN-LAST:event_jAtualizaTotalMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -912,6 +961,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TextTotal;
+    private javax.swing.JButton jAtualizaTotal;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonInserir;
