@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package view;
-
+import java.lang.ClassCastException;
+import java.lang.RuntimeException;
 import Classes.Cliente;
 import Classes.Conexao;
 import Classes.Encomenda;
@@ -834,8 +835,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
              p.setCod(p.ProcuraIdProduto((String)jTableInsereProduto.getValueAt(x,1)));
              //int Encomenda_idEncomenda,int Produto_idProduto,double Total,int qtd
              //int qtd=Integer.parseInt(jTableInsereProduto.getValueAt(x,2));
-             ep.insere(idEncomenda, p.getCod(),(double)jTableInsereProduto.getValueAt(x,4),Integer.parseInt((String)jTableInsereProduto.getValueAt(x,2)));
-             System.out.print(jTableInsereProduto.getValueAt(x, 1)); // a posicao getValue (linha,coluna)
+             try{ep.insere(idEncomenda, p.getCod(),(double)jTableInsereProduto.getValueAt(x,4),Integer.parseInt((String)jTableInsereProduto.getValueAt(x,2)));
+             }catch(ClassCastException e){
+                 ep.insere(idEncomenda, p.getCod(),(double)jTableInsereProduto.getValueAt(x,4), (int) jTableInsereProduto.getValueAt(x,2));
+             }System.out.print(jTableInsereProduto.getValueAt(x, 1)); // a posicao getValue (linha,coluna)
          }
         //System.out.print(jTableInsereProduto.getComponentListeners().toString());
         //ep.Insere(idEncomenda,);
@@ -886,6 +889,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
             total=total+(double)jTableInsereProduto.getValueAt(x,4);            
         }  
         TextTotal.setText(String.valueOf(total));
+        total=0;
     }//GEN-LAST:event_jButtonInserirMouseClicked
 
     private void jComboBoxTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTipoMouseClicked
@@ -937,15 +941,21 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }//GEN-LAST:event_TextTotalActionPerformed
 
     private void jAtualizaTotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jAtualizaTotalMouseClicked
-        // TODO add your handling code here:
         // ao clicar em refresh atualiza ele atualiza as colunas de total recalculando e o total final
         for(int x = 0; x < jTableInsereProduto.getRowCount();x++){ 
             double totalc=0;
-            totalc=(double)jTableInsereProduto.getValueAt(x,3)*(double)jTableInsereProduto.getValueAt(x,2);
-            jTableInsereProduto.setValueAt(totalc, x, 4);// (objeto, linhax, coluna)
+        try{//detectando a excecao            
+            totalc=(double)jTableInsereProduto.getValueAt(x,3)* (int)jTableInsereProduto.getValueAt(x,2);
+            //jTableInsereProduto.setValueAt(totalc, x, 4);//(objeto, linhax, coluna)
+            //total=total+(double)jTableInsereProduto.getValueAt(x,4);
+        }catch(ClassCastException e){
+            totalc=(double)jTableInsereProduto.getValueAt(x,3)* Integer.parseInt((String) jTableInsereProduto.getValueAt(x,2));
+        }finally{// bloco que executa apos tratar o erro
+            jTableInsereProduto.setValueAt(totalc, x, 4);//(objeto, linhax, coluna)
             total=total+(double)jTableInsereProduto.getValueAt(x,4);
-            
-        }TextTotal.setText(String.valueOf(total));
+        }  
+       }TextTotal.setText(String.valueOf(total));
+       total=0;
     }//GEN-LAST:event_jAtualizaTotalMouseClicked
 
     /**
