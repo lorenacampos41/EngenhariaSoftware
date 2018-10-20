@@ -57,7 +57,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
             resultado.getString("situacao"),
             resultado.getString("localEntrega"),
             resultado.getDate("dataEntrega"),
-            resultado.getTime("horaEntrega"),
+            resultado.getTime("horaEntrega")
             
             //resultado.getString("cpf")
             
