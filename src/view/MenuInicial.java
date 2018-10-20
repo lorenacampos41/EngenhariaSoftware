@@ -6,6 +6,7 @@
 package view;
 
 import Classes.Conexao;
+import Classes.Encomenda;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -47,7 +48,8 @@ public class MenuInicial extends javax.swing.JFrame {
          ResultSet resultado2 = st.executeQuery(s); 
          if(resultado2.next()){
          model.addRow(new Object[] 
-         {  resultado2.getString("nome"),
+         {   resultado.getInt("idEncomenda"),
+             resultado2.getString("nome"),
             resultado.getString("localEntrega"),
             resultado.getTime("horaEntrega")
                                  
@@ -158,14 +160,14 @@ public class MenuInicial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome do Cliente", "Local de Entrega", "Hora da Entrega", "Finalizar"
+                "Codigo", "Nome do Cliente", "Local de Entrega", "Hora da Entrega", "Finalizar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                true, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -176,12 +178,18 @@ public class MenuInicial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableEventosDia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEventosDiaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableEventosDia);
         if (jTableEventosDia.getColumnModel().getColumnCount() > 0) {
-            jTableEventosDia.getColumnModel().getColumn(2).setResizable(false);
-            jTableEventosDia.getColumnModel().getColumn(2).setPreferredWidth(2);
+            jTableEventosDia.getColumnModel().getColumn(0).setPreferredWidth(2);
             jTableEventosDia.getColumnModel().getColumn(3).setResizable(false);
-            jTableEventosDia.getColumnModel().getColumn(3).setPreferredWidth(1);
+            jTableEventosDia.getColumnModel().getColumn(3).setPreferredWidth(2);
+            jTableEventosDia.getColumnModel().getColumn(4).setResizable(false);
+            jTableEventosDia.getColumnModel().getColumn(4).setPreferredWidth(1);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -368,6 +376,25 @@ public class MenuInicial extends javax.swing.JFrame {
         // exibe um hint ao passar o mouse no botão
         jButtonEncomendas.setToolTipText("Permite: Agendar, Alterar dados, Finalizar e Excluir uma encomenda");
     }//GEN-LAST:event_jButtonEncomendasMouseEntered
+
+    private void jTableEventosDiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventosDiaMouseClicked
+        // TODO add your handling code here:
+        // ao marcar a opcao finalizar alterar a situacao para enviado!
+        // pegar a linha que foi selecionada
+         int coluna_selecionada = jTableEventosDia.getSelectedColumn();
+         if (coluna_selecionada == 4){ // se o botao da coluna 5 estiver ativado
+               // pegar o codigo da linha selecionda
+                int linha=jTableEventosDia.getSelectedRow();
+                int cod=(int)jTableEventosDia.getValueAt(linha,0);// pega valor da linha e coluna 0 (codigo)
+                // remover do banco
+                Encomenda en=new Encomenda();
+                en.AlterarSituacao(cod);
+                // remover o item da jTable
+                DefaultTableModel modelo = (DefaultTableModel)jTableEventosDia.getModel();
+                modelo.removeRow(jTableEventosDia.getSelectedRow());   
+                // pegar o codigo da encomenda 
+          }     
+    }//GEN-LAST:event_jTableEventosDiaMouseClicked
 
     /**
      * @param args the command line arguments

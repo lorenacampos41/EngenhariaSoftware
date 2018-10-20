@@ -8,9 +8,12 @@ package Classes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lorena
@@ -85,5 +88,29 @@ public class Encomenda {
          }catch(Exception e){System.out.println("Não foi possivel consultar!");
         }		
         return 0;
+    }
+    
+    
+    public int AlterarSituacao(int cod){
+         Connection con;int result = 0;
+        try {
+            con = Conexao.getConnection();
+            Statement statement = con.createStatement();
+            String query = "UPDATE encomenda SET situacao ='Enviada' WHERE idEncomenda="+cod+"";
+               
+            result = statement.executeUpdate(query);
+                if ( result == 1 ){
+                  JOptionPane.showMessageDialog(
+                  null, "Finalizada com sucesso.", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+                  
+                }    
+        }catch(SQLException ex){
+             // a linha a baixo exibe a mensagem de falha ao conectar no banco
+            JOptionPane.showMessageDialog(
+                  null, "Falha ao conectar banco de dados", "Aviso",
+                  JOptionPane.PLAIN_MESSAGE );
+        }
+        return result;
     }
 }
