@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package view;
-import java.lang.ClassCastException;
-import java.lang.RuntimeException;
 import Classes.Cliente;
 import Classes.Conexao;
 import Classes.Encomenda;
@@ -21,6 +19,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import jdk.nashorn.internal.runtime.JSType;
@@ -36,6 +35,42 @@ public class MenuEncomendas extends javax.swing.JFrame {
      * Creates new form MenuEncomendas
      */
      public double total=0;
+     public void CarregarJTable(String sql) {
+        Connection con;
+        try
+        {    
+         con = Conexao.getConnection();
+         com.mysql.jdbc.PreparedStatement banco = (com.mysql.jdbc.PreparedStatement)con.prepareStatement(sql);
+         banco.execute(); // cria o vetor
+         ResultSet resultado = banco.executeQuery(sql);
+         DefaultTableModel model =(DefaultTableModel) jTableExibir.getModel();
+         model.setNumRows(0);
+         while(resultado.next())
+         { //JButton buton= new javax.swing.JButton();
+           //buton.createImage(5, 5); buton.setText("t");
+           
+         model.addRow(new Object[] 
+         { 
+            //retorna os dados da tabela do BD, cada campo e um coluna.
+            resultado.getInt("idEncomenda"),
+            resultado.getInt("idEncomenda"),
+            resultado.getString("situacao"),
+            resultado.getString("localEntrega"),
+            resultado.getDate("dataEntrega"),
+            resultado.getTime("horaEntrega"),
+            
+            //resultado.getString("cpf")
+            
+         }); 
+        } 
+            banco.close();
+            con.close();
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("o erro foi " +ex);
+        }
+    }
      public void CarregarjComboTipo(String sql){
         Connection con;
         try{    
@@ -135,6 +170,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelAba.setVisible(false);
         jComboBoxCliente.removeAllItems();
         CarregarjComboCliente("SELECT * FROM cliente");
+        CarregarJTable("SELECT * FROM encomenda");
         
     }
     
@@ -199,7 +235,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelExibirEncomendas = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableExibir = new javax.swing.JTable();
         jComboExibir = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jBusca = new javax.swing.JTextField();
@@ -256,8 +292,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/folder_explore.png"))); // NOI18N
         jLabel7.setText("Exibir Encomendas");
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableExibir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTableExibir.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
             },
@@ -265,30 +301,23 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 "Código", "Cliente", "Situação", "Local Entrega", "DataEntrega", "HoraEntrega", "Ver Produtos"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, true
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(3);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(3);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(3);
+        jScrollPane1.setViewportView(jTableExibir);
+        if (jTableExibir.getColumnModel().getColumnCount() > 0) {
+            jTableExibir.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTableExibir.getColumnModel().getColumn(2).setResizable(false);
+            jTableExibir.getColumnModel().getColumn(2).setPreferredWidth(3);
+            jTableExibir.getColumnModel().getColumn(4).setResizable(false);
+            jTableExibir.getColumnModel().getColumn(4).setPreferredWidth(3);
+            jTableExibir.getColumnModel().getColumn(5).setResizable(false);
+            jTableExibir.getColumnModel().getColumn(5).setPreferredWidth(3);
         }
 
         jComboExibir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -319,16 +348,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelExibirEncomendas.setLayout(jPanelExibirEncomendasLayout);
         jPanelExibirEncomendasLayout.setHorizontalGroup(
             jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExibirEncomendasLayout.createSequentialGroup()
                 .addGap(0, 369, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,8 +360,17 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
             .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
+                        .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
+                                .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())
+                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelExibirEncomendasLayout.setVerticalGroup(
             jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1076,7 +1104,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jPrincipalEncomendas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableExibir;
     private javax.swing.JTable jTableInsereProduto;
     private javax.swing.JTextField textCod;
     private javax.swing.JTextField textLocalEntrega;

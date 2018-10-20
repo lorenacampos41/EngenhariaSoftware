@@ -185,7 +185,8 @@ public class MenuInicial extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableEventosDia);
         if (jTableEventosDia.getColumnModel().getColumnCount() > 0) {
-            jTableEventosDia.getColumnModel().getColumn(0).setPreferredWidth(2);
+            jTableEventosDia.getColumnModel().getColumn(0).setPreferredWidth(1);
+            jTableEventosDia.getColumnModel().getColumn(2).setPreferredWidth(10);
             jTableEventosDia.getColumnModel().getColumn(3).setResizable(false);
             jTableEventosDia.getColumnModel().getColumn(3).setPreferredWidth(2);
             jTableEventosDia.getColumnModel().getColumn(4).setResizable(false);
