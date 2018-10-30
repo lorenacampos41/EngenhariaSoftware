@@ -10,6 +10,7 @@ import Classes.Encomenda;
 import Classes.Produto;
 import Classes.TipoProduto;
 import Classes.encomendaHASproduto;
+import Classes.tabelaExibirEncomendas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +35,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     /**
      * Creates new form MenuEncomendas
      */
+     tabelaExibirEncomendas texibir = new tabelaExibirEncomendas(); // chama  a classe tabela que contem os botoes
      public double total=0;
      public void CarregarJTable(String sql) {
         Connection con;
@@ -231,6 +233,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonTeste = new javax.swing.JButton();
         jPrincipalEncomendas = new javax.swing.JDesktopPane();
         jPanelExibirEncomendas = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -279,6 +282,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+
+        jButtonTeste.setText("t");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -332,6 +337,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel8.setText("Exibir");
 
         jBusca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBusca.setText("nome cliente");
         jBusca.setToolTipText("Digite nome do cliente ou codigo da encomenda");
 
         jButtonPesquisar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -361,16 +367,13 @@ public class MenuEncomendas extends javax.swing.JFrame {
             .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                         .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                                .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))
-                        .addContainerGap())
-                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelExibirEncomendasLayout.setVerticalGroup(
             jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -926,7 +929,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jPanelAba.setVisible(false);
         //jPanelCadastroEncomenda.setVisible(false);
         jPanelExibirEncomendas.setVisible(true);
-        
+                
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -1037,8 +1040,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
     }//GEN-LAST:event_jAtualizaTotalMouseClicked
 
     private void jComboExibirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboExibirItemStateChanged
-        // TODO add your handling code here:
         // ao selecionar um tipo de exibicao mostrar na tabela as encomendas
+        // ao clicar na opcao todas fazer um teste com tabela com botoes dentro da celula
+        texibir.ver_tabela(jTableExibir);
     }//GEN-LAST:event_jComboExibirItemStateChanged
 
     private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked
@@ -1069,6 +1073,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInserir;
     private javax.swing.JButton jButtonPesquisar1;
     private javax.swing.JButton jButtonProximo;
+    public javax.swing.JButton jButtonTeste;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxCliente;
     private javax.swing.JComboBox<String> jComboBoxProduto;
