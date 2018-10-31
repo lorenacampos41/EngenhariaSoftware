@@ -21,7 +21,7 @@ public class Render extends DefaultTableCellRenderer{
             boolean bln, boolean bln1, int i, int i1) {
         
         if (o instanceof JButton){
-            JButton btn= (JButton)o;
+            JButton btn= (JButton)o;            
             return btn;
         }
         return super.getTableCellRendererComponent(jtable, o,

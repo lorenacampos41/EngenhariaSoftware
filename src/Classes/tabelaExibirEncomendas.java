@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,8 @@ public class tabelaExibirEncomendas {
     
     public void ver_tabela(JTable table,String sql){// melhorar o codigo do try e catch depois
         table.setDefaultRenderer(Object.class, new Render());
-        JButton btn1=new JButton("Ver Itens");
+        JButton btn1=new JButton("Ver Itens"); 
+        
         //btn1.setFocusPainted(true);
         Connection con;// conectando ao banco
         try {

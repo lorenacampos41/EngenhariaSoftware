@@ -12,6 +12,7 @@ import Classes.TipoProduto;
 import Classes.encomendaHASproduto;
 import Classes.tabelaExibirEncomendas;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -318,6 +320,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jTableExibir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableExibirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTableExibirMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(jTableExibir);
@@ -1058,6 +1063,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         this.CarregarJTable("SELECT * FROM cliente WHERE nome like '%"+buscaNome+"%'");
     }//GEN-LAST:event_jButtonPesquisar1MouseClicked
 
+    
     private void jTableExibirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExibirMouseClicked
         // TODO add your handling code here:
         // capturar click no botao de exibir produtos
@@ -1070,9 +1076,14 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 ((JButton)value).doClick();
                 JButton boton = (JButton)value;
                 
+              //  boton.setForeground(Color.yellow);               
             }
         }
     }//GEN-LAST:event_jTableExibirMouseClicked
+
+    private void jTableExibirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExibirMouseEntered
+           
+    }//GEN-LAST:event_jTableExibirMouseEntered
 
     /**
      * @param args the command line arguments
