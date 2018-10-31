@@ -1068,8 +1068,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
         // TODO add your handling code here:
         // capturar click no botao de exibir produtos
         // a linha abaixo  captura a posicao x do click do botao
-        int column = jTableExibir.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row= evt.getY()/jTableExibir.getRowHeight();
+        int coluna_selecionada = jTableExibir.getSelectedColumn();
+        if (coluna_selecionada == 6){ 
+            System.out.print("selecionou um botao");
+        }
+        //int column = jTableExibir.getColumnModel().getColumnIndexAtX(evt.getX());
+       /* int row= evt.getY()/jTableExibir.getRowHeight();
         if (row<jTableExibir.getRowCount() && row >=0 && column <jTableExibir.getColumnCount() && column >=0){
             Object value = jTableExibir.getValueAt(row,column);
             if (value instanceof JButton){  
@@ -1078,7 +1082,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 
               //  boton.setForeground(Color.yellow);               
             }
-        }
+        }*/
     }//GEN-LAST:event_jTableExibirMouseClicked
 
     private void jTableExibirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExibirMouseEntered
