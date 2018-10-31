@@ -55,7 +55,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
          { 
             //retorna os dados da tabela do BD, cada campo e um coluna.
             resultado.getInt("idEncomenda"),
-            resultado.getInt("idEncomenda"),
+            resultado.getInt("idEncomenda"),// verificar esta linha
             resultado.getString("situacao"),
             resultado.getString("localEntrega"),
             resultado.getDate("dataEntrega"),
@@ -1042,7 +1042,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private void jComboExibirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboExibirItemStateChanged
         // ao selecionar um tipo de exibicao mostrar na tabela as encomendas
         // ao clicar na opcao todas fazer um teste com tabela com botoes dentro da celula
-        texibir.ver_tabela(jTableExibir);
+        texibir.ver_tabela(jTableExibir,"select * from encomenda where idEncomenda="+
+                        24+"");
     }//GEN-LAST:event_jComboExibirItemStateChanged
 
     private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked
