@@ -11,6 +11,7 @@ import Classes.Produto;
 import Classes.TipoProduto;
 import Classes.encomendaHASproduto;
 import Classes.tabelaExibirEncomendas;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -312,6 +313,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableExibir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableExibirMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableExibir);
@@ -1042,8 +1048,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private void jComboExibirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboExibirItemStateChanged
         // ao selecionar um tipo de exibicao mostrar na tabela as encomendas
         // ao clicar na opcao todas fazer um teste com tabela com botoes dentro da celula
-        texibir.ver_tabela(jTableExibir,"select * from encomenda where idEncomenda="+
-                        24+"");
+        texibir.ver_tabela(jTableExibir,"select * from encomenda");
     }//GEN-LAST:event_jComboExibirItemStateChanged
 
     private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked
@@ -1052,6 +1057,22 @@ public class MenuEncomendas extends javax.swing.JFrame {
         String buscaNome=jBusca.getText();
         this.CarregarJTable("SELECT * FROM cliente WHERE nome like '%"+buscaNome+"%'");
     }//GEN-LAST:event_jButtonPesquisar1MouseClicked
+
+    private void jTableExibirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExibirMouseClicked
+        // TODO add your handling code here:
+        // capturar click no botao de exibir produtos
+        // a linha abaixo  captura a posicao x do click do botao
+        int column = jTableExibir.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row= evt.getY()/jTableExibir.getRowHeight();
+        if (row<jTableExibir.getRowCount() && row >=0 && column <jTableExibir.getColumnCount() && column >=0){
+            Object value = jTableExibir.getValueAt(row,column);
+            if (value instanceof JButton){  
+                ((JButton)value).doClick();
+                JButton boton = (JButton)value;
+                
+            }
+        }
+    }//GEN-LAST:event_jTableExibirMouseClicked
 
     /**
      * @param args the command line arguments

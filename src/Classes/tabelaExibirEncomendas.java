@@ -19,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class tabelaExibirEncomendas {
     
-    public void ver_tabela(JTable table,String sql){
+    public void ver_tabela(JTable table,String sql){// melhorar o codigo do try e catch depois
         table.setDefaultRenderer(Object.class, new Render());
-        JButton btn1=new JButton("Visualizar Itens");
+        JButton btn1=new JButton("Ver Itens");
+        //btn1.setFocusPainted(true);
         Connection con;// conectando ao banco
         try {
             con = Conexao.getConnection();
@@ -40,7 +41,7 @@ public class tabelaExibirEncomendas {
                     public boolean isCellEditable(int row,int column){return false;}
                 };
                 table.setModel(m);
-                table.setRowHeight(25);
+                table.setRowHeight(25);// altura da linha
             // enquanto houver resultados colocar na tabela
             while(resultado.next())
             {  m.addRow(new Object[]{
@@ -48,6 +49,8 @@ public class tabelaExibirEncomendas {
                 resultado.getInt("idEncomenda"),
                 resultado.getString("situacao"),
                 resultado.getString("localEntrega"),
+                resultado.getDate("dataEntrega"),
+                resultado.getTime("horaEntrega"),
                 btn1            
                 });
                 /*DefaultTableModel m= new DefaultTableModel(
