@@ -529,7 +529,7 @@ public class MenuProdutos extends javax.swing.JFrame {
 
     private void jComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxItemStateChanged
         // TODO add your handling code here:
-        /*String nome;
+        String nome;
         nome = jComboBox.getSelectedItem().toString();
         // criando Tipo para buscar por ele
         System.out.print(nome);
@@ -539,7 +539,7 @@ public class MenuProdutos extends javax.swing.JFrame {
         TipoProduto p = new TipoProduto(); 
         CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
                 p.ProcuraIdTipo(nome)+"");
-        }*/
+        }
     }//GEN-LAST:event_jComboBoxItemStateChanged
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged

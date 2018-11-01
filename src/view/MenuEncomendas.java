@@ -338,7 +338,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         }
 
         jComboExibir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboExibir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Enviadas", "Não enviadas" }));
+        jComboExibir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Enviada", "Não enviada" }));
         jComboExibir.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboExibirItemStateChanged(evt);
@@ -1054,7 +1054,16 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private void jComboExibirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboExibirItemStateChanged
         // ao selecionar um tipo de exibicao mostrar na tabela as encomendas
         // ao clicar na opcao todas fazer um teste com tabela com botoes dentro da celula
-        texibir.ver_tabela(jTableExibir,"select * from encomenda");
+        String nome;
+        nome = jComboExibir.getSelectedItem().toString();
+        if ("Todas".equals(nome)){
+             texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY idEncomenda");
+        }else{
+            TipoProduto p = new TipoProduto(); 
+            texibir.ver_tabela(jTableExibir,"select * from encomenda where situacao='" + nome + "' ");
+        }
+        
+        //texibir.ver_tabela(jTableExibir,"select * from encomenda");
     }//GEN-LAST:event_jComboExibirItemStateChanged
 
     private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked

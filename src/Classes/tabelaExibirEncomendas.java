@@ -21,10 +21,10 @@ import javax.swing.table.DefaultTableModel;
 public class tabelaExibirEncomendas {
     
     public void ver_tabela(JTable table,String sql){// melhorar o codigo do try e catch depois
-        table.setDefaultRenderer(Object.class, new Render());
-        JButton btn1=new JButton("Ver Itens");btn1.setBorderPainted(true);btn1.setFocusable(false);
-        //btn1.setSize(new Dimension(5,5));
-        Connection con;// conectando ao banco
+        table.setDefaultRenderer(Object.class,new Render());
+        JButton btn1=new JButton("Ver Itens");
+        btn1.setBorderPainted(true);btn1.setFocusable(false); btn1.setPreferredSize(new Dimension(20,4));
+        Connection con;//conectando ao banco
         try {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
@@ -40,7 +40,6 @@ public class tabelaExibirEncomendas {
                    // há um problema, ao clicar nos botoes eles aparecem o nome da classe,
                     // entao tem que desabilitar a edicao, as linhas abaixoo fazem isso
                     public boolean isCellEditable(int row,int column){return false;}
-  
                 };
                 table.setModel(m);
                 table.setRowHeight(20);// altura da linha
