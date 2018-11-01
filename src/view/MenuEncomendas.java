@@ -176,6 +176,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jComboBoxCliente.removeAllItems();
         CarregarjComboCliente("SELECT * FROM cliente");
         CarregarJTable("SELECT * FROM encomenda");
+        jPanelControle.setVisible(false);
         
     }
     
@@ -280,6 +281,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButtonVoltar = new javax.swing.JButton();
         TextTotal = new javax.swing.JTextField();
         jAtualizaTotal = new javax.swing.JButton();
+        jPanelControle = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -791,8 +794,28 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
         jPanelAba.addTab("Produtos", jPanel3);
 
+        jLabel15.setText("teste");
+
+        javax.swing.GroupLayout jPanelControleLayout = new javax.swing.GroupLayout(jPanelControle);
+        jPanelControle.setLayout(jPanelControleLayout);
+        jPanelControleLayout.setHorizontalGroup(
+            jPanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControleLayout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(398, Short.MAX_VALUE))
+        );
+        jPanelControleLayout.setVerticalGroup(
+            jPanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControleLayout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
+        );
+
         jPrincipalEncomendas.setLayer(jPanelExibirEncomendas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jPrincipalEncomendas.setLayer(jPanelAba, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jPrincipalEncomendas.setLayer(jPanelControle, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jPrincipalEncomendasLayout = new javax.swing.GroupLayout(jPrincipalEncomendas);
         jPrincipalEncomendas.setLayout(jPrincipalEncomendasLayout);
@@ -804,21 +827,31 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalEncomendasLayout.createSequentialGroup()
-                    .addContainerGap(128, Short.MAX_VALUE)
+                    .addContainerGap(133, Short.MAX_VALUE)
                     .addComponent(jPanelAba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(142, Short.MAX_VALUE)))
+                    .addContainerGap(144, Short.MAX_VALUE)))
+            .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPrincipalEncomendasLayout.createSequentialGroup()
+                    .addContainerGap(68, Short.MAX_VALUE)
+                    .addComponent(jPanelControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(90, Short.MAX_VALUE)))
         );
         jPrincipalEncomendasLayout.setVerticalGroup(
             jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPrincipalEncomendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelExibirEncomendas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPrincipalEncomendasLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanelAba, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPrincipalEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPrincipalEncomendasLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanelControle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -854,6 +887,11 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jMenu3.setForeground(new java.awt.Color(102, 0, 0));
         jMenu3.setText("Controle");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(102, 0, 0));
@@ -888,6 +926,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         jPanelExibirEncomendas.setVisible(false);
+        jPanelControle.setVisible(false);
         jPanelAba.setVisible(true);
         //jPanelCadastroEncomenda.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
@@ -934,6 +973,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         jPanelAba.setVisible(false);
+        jPanelControle.setVisible(false);
         //jPanelCadastroEncomenda.setVisible(false);
         jPanelExibirEncomendas.setVisible(true);
                 
@@ -1125,6 +1165,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
         }       
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        // ao clicar em controle exibir o jpanel de controle
+        jPanelControle.setVisible(true);
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1160,6 +1206,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1178,6 +1225,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jPanelAba;
     private javax.swing.JPanel jPanelCadastroEncomenda;
+    private javax.swing.JPanel jPanelControle;
     private javax.swing.JPanel jPanelExibirEncomendas;
     private javax.swing.JDesktopPane jPrincipalEncomendas;
     private javax.swing.JScrollPane jScrollPane1;
