@@ -244,8 +244,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jTableExibir = new javax.swing.JTable();
         jComboExibir = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jBusca = new javax.swing.JTextField();
-        jButtonPesquisar1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanelAba = new javax.swing.JTabbedPane();
@@ -350,19 +348,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Exibir");
 
-        jBusca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBusca.setToolTipText("Digite nome do cliente ou codigo da encomenda");
-
-        jButtonPesquisar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButtonPesquisar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom.png"))); // NOI18N
-        jButtonPesquisar1.setText("Pesquisar");
-        jButtonPesquisar1.setFocusPainted(false);
-        jButtonPesquisar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonPesquisar1MouseClicked(evt);
-            }
-        });
-
         jLabel14.setText("Ordenar por:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Data mais próxima", "Data mais distante" }));
@@ -380,12 +365,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addGap(0, 369, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(348, 348, 348))
-            .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonPesquisar1)
-                .addGap(24, 24, 24))
             .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,11 +385,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
             .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPesquisar1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(68, 68, 68)
                 .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
@@ -1086,14 +1061,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         //texibir.ver_tabela(jTableExibir,"select * from encomenda");
     }//GEN-LAST:event_jComboExibirItemStateChanged
 
-    private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked
-        // TODO add your handling code here:
-        // pesquisar pelo codigo
-        String buscaNome=jBusca.getText();
-        
-        this.CarregarJTable("SELECT * FROM encomenda WHERE nome like '%"+buscaNome+"%'");
-    }//GEN-LAST:event_jButtonPesquisar1MouseClicked
-
     
     private void jTableExibirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExibirMouseClicked
         // TODO add your handling code here:
@@ -1138,12 +1105,23 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
         // ordenar por data mais proxima ou mais distante
-        String nome;
-        nome = jComboBox1.getSelectedItem().toString();
-        if ("Data mais próxima".equals(nome)){
+        String nome1;
+        nome1 = jComboExibir.getSelectedItem().toString();
+        String nome2;
+        nome2 = jComboBox1.getSelectedItem().toString();
+        if ("Data mais próxima".equals(nome2)){            
+            if ("Todas".equals(nome1)){
              texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY dataEntrega");
-        }else{
-            texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY dataEntrega DESC");
+            }else{
+             texibir.ver_tabela(jTableExibir,"select * from encomenda where situacao='" + nome1 + "'ORDER BY dataEntrega");
+            }
+        }        
+        else{
+            if ("Todas".equals(nome1)){
+             texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY dataEntrega DESC");
+            }else{
+             texibir.ver_tabela(jTableExibir,"select * from encomenda where situacao='" + nome1 + "'ORDER BY dataEntrega DESC");
+            }
         }       
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
@@ -1162,11 +1140,9 @@ public class MenuEncomendas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextTotal;
     private javax.swing.JButton jAtualizaTotal;
-    private javax.swing.JTextField jBusca;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonInserir;
-    private javax.swing.JButton jButtonPesquisar1;
     private javax.swing.JButton jButtonProximo;
     public javax.swing.JButton jButtonTeste;
     private javax.swing.JButton jButtonVoltar;
