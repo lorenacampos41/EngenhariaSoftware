@@ -246,6 +246,8 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jBusca = new javax.swing.JTextField();
         jButtonPesquisar1 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanelAba = new javax.swing.JTabbedPane();
         jPanelCadastroEncomenda = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -349,7 +351,6 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jLabel8.setText("Exibir");
 
         jBusca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jBusca.setText("nome cliente");
         jBusca.setToolTipText("Digite nome do cliente ou codigo da encomenda");
 
         jButtonPesquisar1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -359,6 +360,15 @@ public class MenuEncomendas extends javax.swing.JFrame {
         jButtonPesquisar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonPesquisar1MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setText("Ordenar por:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Data mais próxima", "Data mais distante" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
         });
 
@@ -382,8 +392,12 @@ public class MenuEncomendas extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
                         .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -394,15 +408,21 @@ public class MenuEncomendas extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisar1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addGap(3, 3, 3)
-                .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelExibirEncomendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboExibir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelExibirEncomendasLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jPanelAba.setBackground(new java.awt.Color(255, 255, 255));
@@ -1068,9 +1088,10 @@ public class MenuEncomendas extends javax.swing.JFrame {
 
     private void jButtonPesquisar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPesquisar1MouseClicked
         // TODO add your handling code here:
-
+        // pesquisar pelo codigo
         String buscaNome=jBusca.getText();
-        this.CarregarJTable("SELECT * FROM cliente WHERE nome like '%"+buscaNome+"%'");
+        
+        this.CarregarJTable("SELECT * FROM encomenda WHERE nome like '%"+buscaNome+"%'");
     }//GEN-LAST:event_jButtonPesquisar1MouseClicked
 
     
@@ -1114,6 +1135,18 @@ public class MenuEncomendas extends javax.swing.JFrame {
            
     }//GEN-LAST:event_jTableExibirMouseEntered
 
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        // ordenar por data mais proxima ou mais distante
+        String nome;
+        nome = jComboBox1.getSelectedItem().toString();
+        if ("Data mais próxima".equals(nome)){
+             texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY dataEntrega");
+        }else{
+            texibir.ver_tabela(jTableExibir,"select * from encomenda ORDER BY dataEntrega DESC");
+        }       
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1137,6 +1170,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonProximo;
     public javax.swing.JButton jButtonTeste;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxCliente;
     private javax.swing.JComboBox<String> jComboBoxProduto;
     private javax.swing.JComboBox<String> jComboBoxTipo;
@@ -1149,6 +1183,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

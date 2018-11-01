@@ -6,6 +6,8 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -92,6 +94,23 @@ public class Cliente {
                   JOptionPane.PLAIN_MESSAGE );
         }
         return result;
+    }
+    
+    
+    public int ProcuraIdCliente(String nome){
+        Connection con; int cod=0;
+         try{
+         con = Conexao.getConnection();
+         String sql = "select * from cliente where nome like '%" + nome + "%' ";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         
+         if(resultSet.next()){ 
+              return resultSet.getInt("idCliente"); 
+         }
+         }catch(Exception e){System.out.println("Não foi possivel consultar!");
+        }		
+        return 0;
     }
     
 }
