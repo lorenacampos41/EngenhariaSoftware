@@ -21,12 +21,11 @@ public class Render extends DefaultTableCellRenderer{
             boolean bln, boolean bln1, int i, int i1) {
         
         if (o instanceof JButton){
-            JButton btn= (JButton)o;            
+            JButton btn= (JButton)o;
             return btn;
         }
         return super.getTableCellRendererComponent(jtable, o,
                 bln, bln1, i, i1); //To change body of generated methods, choose Tools | Templates.
     }
-    //super.
-    
+
 }

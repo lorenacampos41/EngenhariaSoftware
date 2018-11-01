@@ -22,9 +22,8 @@ public class tabelaExibirEncomendas {
     
     public void ver_tabela(JTable table,String sql){// melhorar o codigo do try e catch depois
         table.setDefaultRenderer(Object.class, new Render());
-        JButton btn1=new JButton("Ver Itens"); 
-        
-        //btn1.setFocusPainted(true);
+        JButton btn1=new JButton("Ver Itens");btn1.setBorderPainted(true);btn1.setFocusable(false);
+        //btn1.setSize(new Dimension(5,5));
         Connection con;// conectando ao banco
         try {
             con = Conexao.getConnection();
@@ -41,9 +40,10 @@ public class tabelaExibirEncomendas {
                    // há um problema, ao clicar nos botoes eles aparecem o nome da classe,
                     // entao tem que desabilitar a edicao, as linhas abaixoo fazem isso
                     public boolean isCellEditable(int row,int column){return false;}
+  
                 };
                 table.setModel(m);
-                table.setRowHeight(25);// altura da linha
+                table.setRowHeight(20);// altura da linha
             // enquanto houver resultados colocar na tabela
             while(resultado.next())
             {  m.addRow(new Object[]{

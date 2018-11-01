@@ -310,7 +310,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -334,6 +334,7 @@ public class MenuEncomendas extends javax.swing.JFrame {
             jTableExibir.getColumnModel().getColumn(4).setPreferredWidth(3);
             jTableExibir.getColumnModel().getColumn(5).setResizable(false);
             jTableExibir.getColumnModel().getColumn(5).setPreferredWidth(3);
+            jTableExibir.getColumnModel().getColumn(6).setPreferredWidth(5);
         }
 
         jComboExibir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1070,7 +1071,22 @@ public class MenuEncomendas extends javax.swing.JFrame {
         // a linha abaixo  captura a posicao x do click do botao
         int coluna_selecionada = jTableExibir.getSelectedColumn();
         if (coluna_selecionada == 6){ 
-            System.out.print("selecionou um botao");
+            //System.out.print("selecionou um botao");
+            int linha=jTableExibir.getSelectedRow();// pega a linha do objeto selecionado
+            int cod=(int)jTableExibir.getValueAt(linha,0);// pega o codigo que esta na coluna zero
+            // abrir tela com informações dos itens da encomenda    
+            /*Object value = jTableExibir.getValueAt(1,0);
+            if (value instanceof JButton){  
+                ((JButton)value).doClick();Action action = null;
+                JButton boton = (JButton)value;
+                boton.setBorderPainted(true);
+            }*/Object value = jTableExibir.getValueAt(linha,coluna_selecionada);
+            if (value instanceof JButton){  
+                ((JButton)value).doClick();
+                JButton boton = (JButton)value;
+                boton.setBorderPainted(false);boton.setFocusable(true);
+              //  boton.setForeground(Color.yellow);               
+            }
         }
         //int column = jTableExibir.getColumnModel().getColumnIndexAtX(evt.getX());
        /* int row= evt.getY()/jTableExibir.getRowHeight();
