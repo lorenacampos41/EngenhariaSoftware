@@ -64,12 +64,48 @@ public class MenuInicial extends javax.swing.JFrame {
    }
    }
   
+    
+    
+    public void CarregarJtableProximosEventos(String sql){
+    Connection con;
+    try
+    {    
+     con = Conexao.getConnection();
+     PreparedStatement banco = (PreparedStatement)con.prepareStatement(sql);
+     banco.execute(); // cria o vetor
+     ResultSet resultado = banco.executeQuery(sql);
+     DefaultTableModel model =(DefaultTableModel) jTableProximosEventos.getModel();
+     model.setNumRows(0);
+     
+     while(resultado.next())
+     {   int Cliente_idCliente = resultado.getInt("Cliente_idCliente");       
+         String s = "select * from cliente where idCliente ='" +Cliente_idCliente+"'";
+         PreparedStatement st = (PreparedStatement)con.prepareStatement(s);
+         st.execute();
+         ResultSet resultado2 = st.executeQuery(s); 
+         if(resultado2.next()){
+         model.addRow(new Object[] 
+         {   resultado.getInt("idEncomenda"),
+             resultado2.getString("nome"),
+            resultado.getString("localEntrega")
+                                 
+         }); 
+         }
+    } 
+     banco.close();
+     con.close();
+    }
+   catch (SQLException ex){
+      System.out.println("o erro foi " +ex);
+   }
+   }
     public MenuInicial() {
         initComponents();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");  
         Calendar c = Calendar.getInstance();    
         System.out.println(df.format(c.getTime()));// pega a data atual
         CarregarJtableEventosDia("select * from encomenda where dataEntrega='"+df.format(c.getTime())+"' and situacao='Não enviada'");
+        CarregarJtableProximosEventos("select * from encomenda where situacao='Não enviada'  ORDER BY dataEntrega");
     }
 
     /**
@@ -93,7 +129,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonProdutos = new javax.swing.JButton();
         jButtonOrçamento = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableProximosEventos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,6 +215,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableEventosDia.setRowHeight(20);
         jTableEventosDia.getTableHeader().setReorderingAllowed(false);
         jTableEventosDia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -221,8 +258,8 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProximosEventos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTableProximosEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -238,12 +275,13 @@ public class MenuInicial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable2.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTableProximosEventos.setRowHeight(20);
+        jScrollPane2.setViewportView(jTableProximosEventos);
+        if (jTableProximosEventos.getColumnModel().getColumnCount() > 0) {
+            jTableProximosEventos.getColumnModel().getColumn(0).setResizable(false);
+            jTableProximosEventos.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTableProximosEventos.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTableProximosEventos.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         jLabel4.setFont(new java.awt.Font("DokChampa", 1, 18)); // NOI18N
@@ -440,7 +478,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableEventosDia;
+    private javax.swing.JTable jTableProximosEventos;
     // End of variables declaration//GEN-END:variables
 }
