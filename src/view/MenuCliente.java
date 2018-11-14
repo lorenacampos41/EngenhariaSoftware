@@ -175,6 +175,8 @@ public class MenuCliente extends javax.swing.JFrame {
         if (jTableClientes.getColumnModel().getColumnCount() > 0) {
             jTableClientes.getColumnModel().getColumn(0).setResizable(false);
             jTableClientes.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTableClientes.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jTableClientes.getColumnModel().getColumn(5).setPreferredWidth(90);
         }
 
         textEndereco.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -274,7 +276,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel7.setText("CPF");
+        jLabel7.setText("CPF*");
 
         try {
             jFormattedCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -315,11 +317,10 @@ public class MenuCliente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButtonCadastrar)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                    .addComponent(textTelefone, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addComponent(jFormattedCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jFormattedCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jBuscaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,9 +445,10 @@ public class MenuCliente extends javax.swing.JFrame {
         try {
             con = Conexao.getConnection();
             Statement statement = con.createStatement();
-            if("".equals(textNome.getText())){
+           
+            if("".equals(textNome.getText()) || "".equals(jFormattedCpf.getText())){
                 JOptionPane.showMessageDialog(
-                null, "Preecha o campo: \n Nome", "Aviso",
+                null, "Preencha os campos obrigatórios (*) \n", "Aviso",
                 JOptionPane.PLAIN_MESSAGE );
             }
             if("".equals(textTelefone.getText().replaceAll("[( ) -]","")) && "".equals(textCelular.getText().replaceAll("[( ) -]","")) ){

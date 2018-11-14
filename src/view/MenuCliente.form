@@ -110,12 +110,10 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="textEndereco" min="-2" pref="436" max="-2" attributes="0"/>
                                       <Component id="jButtonCadastrar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="textCelular" alignment="0" pref="127" max="32767" attributes="0"/>
-                                          <Component id="textTelefone" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="jFormattedCpf" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Component id="textTelefone" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                       <Component id="textNome" alignment="0" min="-2" pref="347" max="-2" attributes="0"/>
+                                      <Component id="textCelular" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
+                                      <Component id="jFormattedCpf" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="jScrollPane1" alignment="1" min="-2" pref="845" max="-2" attributes="0"/>
@@ -274,7 +272,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -294,7 +292,7 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="90" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -461,7 +459,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="33" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CPF"/>
+                <Property name="text" type="java.lang.String" value="CPF*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedCpf">
