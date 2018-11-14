@@ -247,11 +247,6 @@ public class MenuCliente extends javax.swing.JFrame {
         }
         textCelular.setEnabled(false);
         textCelular.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        textCelular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textCelularActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 0, 0));
@@ -419,10 +414,6 @@ public class MenuCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
     }//GEN-LAST:event_formWindowOpened
-
-    private void textCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textCelularActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
