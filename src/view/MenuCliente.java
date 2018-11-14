@@ -94,7 +94,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jTableClientes = new javax.swing.JTable();
         textEndereco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonNovo = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         textTelefone = new javax.swing.JFormattedTextField();
@@ -191,13 +191,13 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 0, 0));
         jLabel4.setText("Endereço");
 
-        jButton1.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 0, 0));
-        jButton1.setText("NOVO");
-        jButton1.setFocusPainted(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonNovo.setFont(new java.awt.Font("DokChampa", 0, 10)); // NOI18N
+        jButtonNovo.setForeground(new java.awt.Color(51, 0, 0));
+        jButtonNovo.setText("NOVO");
+        jButtonNovo.setFocusPainted(false);
+        jButtonNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jButtonNovoMouseClicked(evt);
             }
         });
 
@@ -294,7 +294,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButtonNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -338,7 +338,7 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -416,7 +416,7 @@ public class MenuCliente extends javax.swing.JFrame {
         this.CarregarJTable("SELECT * FROM cliente ORDER BY idCliente ASC");
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButtonNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNovoMouseClicked
         // TODO add your handling code here:
         textNome.setEnabled(true);
         textEndereco.setEnabled(true);
@@ -429,7 +429,7 @@ public class MenuCliente extends javax.swing.JFrame {
         textTelefone.setText("");
         textCelular.setText("");
         jFormattedCpf.setText("");
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButtonNovoMouseClicked
 
     private void jButtonCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseClicked
         // ao clicar em cadastrar ele seta no banco de dados os valores dos campos nome, endereco, celular  e telefone;
@@ -518,9 +518,9 @@ public class MenuCliente extends javax.swing.JFrame {
     
     
     private void jButtonEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarMouseClicked
-        // TODO add your handling code here:
+        
         // editar cliente ao clicar no botao
-        // desabiltando os campos de cadastrar
+        // limpando os campos de cadastrar
         jButtonCadastrar.setEnabled(false);
         textNome.setText("");
                   textEndereco.setText("");
@@ -529,15 +529,30 @@ public class MenuCliente extends javax.swing.JFrame {
                   textCelular.setText("");
         jButtonCadastrar.setEnabled(false);
         
-        // pegando a linha
+        // chamando a janela de alterar
+        EditarCliente editarcl=new EditarCliente();
+        jDesktopCliente.add(editarcl);
+         // pegando a linha selecionada da tabela        
+        int linha = jTableClientes.getSelectedRow();//Pega o dado de dentro da celula da tabela
+        Cliente cl = new Cliente();
+        cl.setNome(String.valueOf(jTableClientes.getValueAt(linha, 1)));
+        cl.setEndereco(String.valueOf(jTableClientes.getValueAt(linha, 4)));
+        cl.setTelefone(String.valueOf(jTableClientes.getValueAt(linha, 2)));
+        cl.setCelular(String.valueOf(jTableClientes.getValueAt(linha, 3)));
+        cl.setCpf(String.valueOf(jTableClientes.getValueAt(linha, 5)));
+        editarcl.CarregarCampos(cl);
+        editarcl.setVisible(true);
         
-        //pegando valor da linha
-        int linha = jTableClientes.getSelectedRow();
+        //textNome.setEnabled(true);textEndereco.setEnabled(true);textCelular.setEnabled(true);textTelefone.setEnabled(true);
             //Pega o dado de dentro da celula da tabela
-            String dado = (String) jTableClientes.getValueAt(linha, 1);
-            String codigo = String.valueOf(jTableClientes.getValueAt(linha, 0));
+            //String dado = (String) jTableClientes.getValueAt(linha, 1);
+            String nome = String.valueOf(jTableClientes.getValueAt(linha, 1)); 
+            //textNome.setText(nome); nome= String.valueOf(jTableClientes.getValueAt(linha, 4)); textEndereco.setText(nome);
+            // pegando os campos celular e telefone da tabela
+            
+       
             //converte pra inteiro.
-            int cod = Integer.parseInt(codigo);
+            //int cod = Integer.parseInt(codigo);
            // CadastroCliente cl=new CadastroCliente();
             //jDesktopCliente.add(cl);
             //cl.setVisible(true);
@@ -618,10 +633,10 @@ public class MenuCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jBuscaNome;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JDesktopPane jDesktopCliente;
     private javax.swing.JFormattedTextField jFormattedCpf;
