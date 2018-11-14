@@ -253,6 +253,7 @@ public class MenuCliente extends javax.swing.JFrame {
         jLabel6.setText("Clientes cadastrados");
 
         jBuscaNome.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBuscaNome.setText("cliente");
         jBuscaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBuscaNomeActionPerformed(evt);
