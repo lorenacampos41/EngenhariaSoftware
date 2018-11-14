@@ -237,6 +237,11 @@ public class MenuProdutos extends javax.swing.JFrame {
                 jComboBoxItemStateChanged(evt);
             }
         });
+        jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 0, 0));
@@ -537,14 +542,14 @@ public class MenuProdutos extends javax.swing.JFrame {
         String nome;
         nome = jComboBox.getSelectedItem().toString();
         // criando Tipo para buscar por ele
-        System.out.print(nome);
-        if ("Todos".equals(nome)){
+        //System.out.print(nome);
+        if("Todos".equals(nome)){
              CarregarJTable("select * from produto ORDER BY idProduto");
-        }else{
+        }/*else{
         TipoProduto p = new TipoProduto(); 
         CarregarJTable("select * from produto where TipoProduto_idTipoProduto="+
                 p.ProcuraIdTipo(nome)+"");
-        }
+        }*/
     }//GEN-LAST:event_jComboBoxItemStateChanged
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -570,6 +575,10 @@ public class MenuProdutos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxActionPerformed
 
     /**
      * @param args the command line arguments

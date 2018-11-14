@@ -148,13 +148,11 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonEncomendas.setText("Encomendas");
         jButtonEncomendas.setFocusPainted(false);
         jButtonEncomendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEncomendasMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonEncomendasMouseEntered(evt);
-            }
-        });
-        jButtonEncomendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEncomendasActionPerformed(evt);
             }
         });
 
@@ -399,12 +397,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonClientes.setToolTipText("Permite: Cadastrar, Alterar dados e Excluir clientes");
     }//GEN-LAST:event_jButtonClientesMouseEntered
 
-    private void jButtonEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEncomendasActionPerformed
-        // abrir a janela de gerenciar cliente
-        new MenuEncomendas().setVisible(true);
-
-    }//GEN-LAST:event_jButtonEncomendasActionPerformed
-
     private void jButtonEncomendasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseEntered
         // TODO add your handling code here:
         // exibe um hint ao passar o mouse no botão
@@ -429,6 +421,11 @@ public class MenuInicial extends javax.swing.JFrame {
                 // pegar o codigo da encomenda 
           }     
     }//GEN-LAST:event_jTableEventosDiaMouseClicked
+
+    private void jButtonEncomendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEncomendasMouseClicked
+        // TODO add your handling code here:
+         new MenuEncomendas().setVisible(true);
+    }//GEN-LAST:event_jButtonEncomendasMouseClicked
 
     /**
      * @param args the command line arguments
