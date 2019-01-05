@@ -540,6 +540,7 @@ public class MenuCliente extends javax.swing.JFrame {
         cl.setTelefone(String.valueOf(jTableClientes.getValueAt(linha, 2)));
         cl.setCelular(String.valueOf(jTableClientes.getValueAt(linha, 3)));
         cl.setCpf(String.valueOf(jTableClientes.getValueAt(linha, 5)));
+        cl.setCodigo((int)(jTableClientes.getValueAt(linha, 0)));
         editarcl.CarregarCampos(cl);
         editarcl.setVisible(true);
         

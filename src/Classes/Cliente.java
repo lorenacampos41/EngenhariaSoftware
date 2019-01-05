@@ -96,6 +96,17 @@ public class Cliente {
         return result;
     }
     
+    public void Alterar(Cliente cl){
+     Connection con;
+         try{
+         con = Conexao.getConnection();
+         String sql = "UPDATE cliente SET nome='lorenaaaaa"+cl.getNome()+",endereco="+
+                 cl.getEndereco()+" WHERE idCliente= "+cl.getCodigo()+" ";
+         PreparedStatement st = con.prepareStatement(sql);
+         ResultSet resultSet = st.executeQuery();
+         }catch(Exception e){System.out.println("Não foi possivel alterar os dados!");
+        }	
+    }
     
     public int ProcuraIdCliente(String nome){
         Connection con; int cod=0;
